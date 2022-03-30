@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contents %}
+
+  <main id="main">
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs mt-3 mb-3">
+      <!-- <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Authentication</h2>
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li>Login</li>
+          </ol>
+        </div>
+
+      </div> -->
+    </section><!-- End Breadcrumbs Section -->
+       
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Login</h2>
+        </div>
+        
+        <div class="row">
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="contact-about">
+              <p>If you have not followed our social media follow our link below</p>
+              <div class="social-links">
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-12" data-aos="fade-up" data-aos-delay="300">
+              {% if messages %}
+              {% for message in messages %}
+                {% if message.tags == 'success' %}
+                  <div class="alert alert-success text-center " role="alert">
+                  {{message}}
+                  </div>
+                {% endif %}
+                {% if message.tags == 'error' %}
+                  <div class="alert alert-danger text-center " role="alert">
+                  {{message}}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+            <form  method="post" role="form" class="form-group">
+              {% csrf_token %}
+              <div class="form-group mt-3">
+                <input style="height: 50px;" type="text" name="username" class="form-control" id="name" placeholder="User Name" required>
+              </div>
+              <div class="form-group mt-3">
+                <input style="height: 50px;" type="password" class="form-control" name="password" id="email" placeholder="Your Password" required>
+              </div>
+            
+              <div class="text-center mt-3">
+                <button style="width: 100%;" class="btn btn-warning btn-lg rounded-pill " type="submit">Login</button>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mt-3">
+                  Don't have an account? <a href="">Register Here</a>
+                </div>
+                <div class="col-md-6 mt-3">
+                  Forgot password? <a href="">Reset Here</a>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+            <div class="info">
+              <div>
+                <i class="ri-map-pin-line"></i>
+                <p>74 Ally Skykes</p>
+              </div>
+
+              <div>
+                <i class="ri-mail-send-line"></i>
+                <p>info@FundRaiser.com</p>
+              </div>
+
+              <div>
+                <i class="ri-phone-line"></i>
+                <p>+1 5589 55488 5</p>
+              </div>
+
+            </div>
+          </div> -->
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+{% endblock contents %}
+
+{% block footer %}
+{% endblock footer %}
