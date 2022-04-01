@@ -20,3 +20,7 @@ def request_login(request):
         
     return render(request,  'userauth/login.html')
              
+def logout_request(request):
+    logout(request)
+    messages.success(request,f"Logged out successful")
+    return redirect('home')
