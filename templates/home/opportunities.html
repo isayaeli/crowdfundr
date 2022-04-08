@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+{% block contents %}
+
+  <main id="main">
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs mt-3 mb-3">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2><a href="{% url 'home' %}"><img src="{% static 'assets/img/logo3.png' %}" style="height: 70x;width: 150px;" alt="" class="img-fluid"></a></h2>
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li>Opportunities</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+       
+    <!-- ======= More Services Section opportunity section ======= -->
+    <section id="opportunities" class="more-services">
+        <div class="container">
+          <div class="section-title" data-aos="fade-up">
+            <h2>Opportunities</h2>
+            <p>Recent Opportunities From Donors</p>
+          </div>
+          <div class="row">
+            {% for data in opps %}
+            <div class="col-md-6 d-flex align-items-stretch">
+              <div class="card" style='background-image: url("{{data.image.url}}");' data-aos="fade-up" data-aos-delay="100">
+                <div class="card-body">
+                  <h5 class="card-title"><a href="">{{data.title}}</a></h5>
+                  <p class="card-text">{{data.details|truncatechars:100}}</p>
+                  <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            <nav aria-label="Page navigation example" class="mt-5">
+                {% if opps.has_other_pages %}
+                    <ul class="pagination">
+                        {% if opps.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link text-dark" href="?page={{ opps.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% else %}
+                        <li class="page-item disabled text-center"></li>
+                        {% endif %}
+
+                        {% for i in opps.paginator.page_range %}
+                            {% if opps.number == i %}
+                                <li class="page-item "><a class="page-link  bg-warning text-dark" href="?page={{i}}">{{ i }}</a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link text-dark" href="?page={{i}}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if opps.has_next %}
+                            <li class="page-item">
+                                <a class="page-link text-dark" href="?page={{ opps.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% else %}
+                        <li class="page-item disabled text-center"></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+              </nav>
+  
+          </div>
+  
+        </div>
+      </section><!-- End More Services Section -->
+
+  </main><!-- End #main -->
+{% endblock contents %}
+
+{% block footer %}
+{% endblock footer %}

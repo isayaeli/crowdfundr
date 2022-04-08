@@ -35,7 +35,7 @@
                 <li class="sidebar-item active  ">
                     <a href="{% url 'index' %}" class='sidebar-link bg-warning text-dark'>
                         <i class="bi bi-grid-fill text-dark"></i>
-                        <span class="text-dark" >Dashboard</span>
+                        <span class="text-dark" >SME Dashboard</span>
                     </a>
                 </li>
 
@@ -47,14 +47,14 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class='sidebar-link text-dark'>
+                    <a href="{% url 'projects' %}" class='sidebar-link text-dark'>
                         <i class="bi bi-collection-fill text-warning"></i>
                         <span>Projects</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class='sidebar-link text-dark'>
+                    <a href="{% url 'sme_profile' %}" class='sidebar-link text-dark'>
                         <i class="bi bi-collection-fill text-warning"></i>
                         <span>Profile</span>
                     </a>
@@ -70,7 +70,7 @@
                             <a class="text-dark" href="layout-default.html">Change Password</a>
                         </li>
                         <li class="submenu-item ">
-                            <a class="text-dark" href="layout-vertical-1-column.html">Logout</a>
+                            <a class="text-dark" href="{% url 'logout' %}">Logout</a>
                         </li>
                     </ul>
                 </li>

@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include("home.urls")),
     path('', include("userauth.urls")),
     path('', include("sme.urls")),
+    path('', include("donors.urls")),
 ]
 
 if settings.DEBUG:
