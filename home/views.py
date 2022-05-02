@@ -1,9 +1,21 @@
-from django.shortcuts import get_object_or_404, render
+
+import math
+import random
+import requests
+from django.shortcuts import get_object_or_404, redirect, render
 from sme.models import Project
 from donors.models import Opportunity
 from userauth.models import Profile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.conf import settings
+
 # Create your views here.
+key = settings.SWAHILIES_SECRET_KEY
+url = "https://swahiliesapi.invict.site/Api"
+headers = {'User-Agent': 'Mozilla/5.0'}
+
+
+
 def home(request):
     projects = Project.objects.all().order_by('-id')[:4]
     opportunities = Opportunity.objects.all().order_by('-id')[:4]
@@ -58,7 +70,36 @@ def opportunities(request):
 
 def donate(request, id):
     project  = get_object_or_404(Project, id=id)
+    if request.method == 'POST':
+        print(request.POST)
+        amount =  request.POST['amount1']
+        order_id = ''+str(math.floor(1000000 + random.random()*9000000)),
+        return redirect(str(process_payment(amount, order_id)))
     context = {
         'data':project
     }
     return render(request, 'home/donate.html', context)
+
+
+def process_payment(amount, order_id):
+   
+    payload = {
+        "api":170, "code":101,"data":{
+        "api_key":key,
+        "order_id": order_id,
+        "amount":amount,
+        "username":"CrowdImpact",
+        "phone_number":"0783262616",
+        "is_live":False,
+        # "cancel_url": "afrogulio.co.tz/canceled"
+        }}
+    response = requests.post(url,  headers=headers, json=payload)
+    # print(response.json())
+    response = response.json()
+    response = response['payment_url']
+    # print(response)
+    return response
+
+
+
+
