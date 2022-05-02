@@ -33,8 +33,8 @@
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
               <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                 <!-- <div class="icon"><i class="bx bxl-dribbble"></i></div> -->
-                <h4 class="title"><a data-toggle="modal" data-target="#staticBackdrop{{data.id}}">{{data.title}}</a></h4>
-                <p class="description">{{data.project_overview|truncatechars:100}} <a  class="description" data-toggle="modal" data-target="#staticBackdrop{{data.id}}"><b>Read More</b></a></p>
+                <h4 class="title"><a data-toggle="modal" data-target="#projects{{data.id}}">{{data.title}}</a></h4>
+                <p class="description">{{data.project_overview|truncatechars:100}} <a  class="description" data-toggle="modal" data-target="#projects{{data.id}}"><b>Read More</b></a></p>
               </div>
             </div>
             {% endfor %}
@@ -78,67 +78,8 @@
         </div>
       </section>
 
-      {% for data in projects %}
-      <div class="modal fade mymodal"  id="staticBackdrop{{data.id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-          <div class="modal-content">
-              <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel"><b>Project Details</b></h5>
-              <span id="success" class="text-success" ></span>
-              <button type="button" class="close video" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times; close</span>
-              </button>
-              </div>
-              <div class="modal-body">
-                  <div class="row mb-3">
-                      <div class="col-md-4">
-                          <h5>Title</h5>
-                          <span><b>{{data.title}}</b></span>
-                      </div>
-                      <div class="col-md-4">
-                          <h5>Proposal</h5>
-                          <span><b>{{data.proposal}}</b></span>
-                      </div>
-                      <div class="col-md-4">
-                          <h5>Duration</h5>
-                          <span><b>{{data.project_duration}}</b></span>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-12">
-                          <h5>Project Overview</h5>
-                          <p><b>{{ data.project_overview }}</b></p>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-12">
-                          <h5>Target Area</h5>
-                          <p><b>{{ data.target_area }}</b></p>
-                      </div>
-                  </div>
-                  {% if data.video %}
-                  <div class="row">
-                      <div class="col-md-12">
-                          <h5>Intro Video</h5>
-                          <div style="width:100%;">
-                              <video id="v" width="400" controls >
-                                  <source src="{{ data.video.url }}" type="video/mp4">
-                                  Your browser does not support the video tag.
-                              </video>
-                          </div>
-                      </div>
-                  </div>
-                  {% endif %}
-              </div>
-              <div class="modal-footer">
-                  <a class="btn btn-warning rounded-pill video" data-toggle="modal" data-target="#edit{{data.id}}" >Update <i class="bi bi-pencil" ></i></a>
-                  <a class="btn btn-danger rounded-pill video " data-toggle="modal" data-target="#delete{{data.id}}" >Delete <i class="bi bi-trash" ></i></a>
-                  <button type="button" class="btn btn-secondary video rounded-pill" data-dismiss="modal">Close</button>
-              </div>
-          </div>
-          </div>
-      </div>
-      {%  endfor %}
+      {% include 'includes/modals.html' %}
+
 
 
   </main><!-- End #main -->

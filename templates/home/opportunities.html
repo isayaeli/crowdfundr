@@ -28,7 +28,7 @@
             <p>Recent Opportunities From Donors</p>
           </div>
           <div class="row">
-            {% for data in opps %}
+            {% for data in opportunities %}
             <div class="col-md-6 d-flex align-items-stretch">
               <div class="card" style='background-image: url("{{data.image.url}}");' data-aos="fade-up" data-aos-delay="100">
                 <div class="card-body">
@@ -40,11 +40,11 @@
             </div>
             {% endfor %}
             <nav aria-label="Page navigation example" class="mt-5">
-                {% if opps.has_other_pages %}
+                {% if opportunities.has_other_pages %}
                     <ul class="pagination">
-                        {% if opps.has_previous %}
+                        {% if opportunities.has_previous %}
                             <li class="page-item">
-                                <a class="page-link text-dark" href="?page={{ opps.previous_page_number }}" aria-label="Previous">
+                                <a class="page-link text-dark" href="?page={{ opportunities.previous_page_number }}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
@@ -52,17 +52,17 @@
                         <li class="page-item disabled text-center"></li>
                         {% endif %}
 
-                        {% for i in opps.paginator.page_range %}
-                            {% if opps.number == i %}
+                        {% for i in opportunities.paginator.page_range %}
+                            {% if opportunities.number == i %}
                                 <li class="page-item "><a class="page-link  bg-warning text-dark" href="?page={{i}}">{{ i }}</a></li>
                             {% else %}
                                 <li class="page-item"><a class="page-link text-dark" href="?page={{i}}">{{ i }}</a></li>
                             {% endif %}
                         {% endfor %}
 
-                        {% if opps.has_next %}
+                        {% if opportunities.has_next %}
                             <li class="page-item">
-                                <a class="page-link text-dark" href="?page={{ opps.next_page_number }}" aria-label="Next">
+                                <a class="page-link text-dark" href="?page={{ opportunities.next_page_number }}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
@@ -77,50 +77,7 @@
   
         </div>
       </section><!-- End More Services Section -->
-
-      {% for data in opps %}
-      <div class="modal fade mymodal"  id="staticBackdrop{{data.id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-          <div class="modal-content">
-              <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel"><b>Opportunity Details</b></h5>
-              <span id="success" class="text-success" ></span>
-              <button type="button" class="close btn btn-warning rounded-pill" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-              </div>
-              <div class="modal-body">
-                  <div class="row mb-3">
-                      <div class="col-md-4">
-                          <h5>Title</h5>
-                          <span><b>{{data.title}}</b></span>
-                      </div>
-                      <div class="col-md-4">
-                          <h5>Uploaded</h5>
-                          <span><b>{{data.created_on|date:"d, M. Y" }}</b></span>
-                      </div>
-                      <div class="col-md-4">
-                          <h5>Deadline</h5>
-                          <span><b>{{data.deadline|date:"d, M. Y" }}</b></span>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-md-12">
-                          <h5>Opportunity Details</h5>
-                          <p><b>{{ data.details }}</b></p>
-                      </div>
-                  </div>
-              
-              </div>
-              <div class="modal-footer">
-                  <a class="btn btn-warning rounded-pill video" data-toggle="modal" data-target="#edit{{ data.id }}" >Update <i class="bi bi-pencil" ></i></a>
-                  <a class="btn btn-danger rounded-pill video " data-toggle="modal" data-target="#delete{{ data.id }}" >Delete <i class="bi bi-trash" ></i></a>
-                  <button type="button" class="btn btn-secondary video rounded-pill" data-dismiss="modal">Close</button>
-              </div>
-          </div>
-          </div>
-      </div>
-      {%  endfor %}
+      {% include 'includes/modals.html' %}
 
 
   </main><!-- End #main -->

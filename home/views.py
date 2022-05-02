@@ -50,6 +50,6 @@ def opportunities(request):
         opps =paginator.page(paginator.num_pages)
 
     context = {
-        'opps':opps
+        'opportunities':opps
     }
     return render(request, 'home/opportunities.html', context)
