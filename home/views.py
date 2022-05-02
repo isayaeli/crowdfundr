@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from sme.models import Project
 from donors.models import Opportunity
 from userauth.models import Profile
@@ -53,3 +53,12 @@ def opportunities(request):
         'opportunities':opps
     }
     return render(request, 'home/opportunities.html', context)
+
+
+
+def donate(request, id):
+    project  = get_object_or_404(Project, id=id)
+    context = {
+        'data':project
+    }
+    return render(request, 'home/donate.html', context)

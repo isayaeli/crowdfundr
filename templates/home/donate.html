@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+{% block contents %}
+
+  <main id="main">
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs mt-3 mb-3">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2><a href="{% url 'home' %}"><img src="{% static 'assets/img/logo3.png' %}" style="height: 70x;width: 150px;" alt="" class="img-fluid"></a></h2>
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li>Donate</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+       
+    <section id="projects" class="services">
+        <div class="container">
+  
+          <div class="section-title" data-aos="fade-up">
+            <h2>Donate</h2>
+            <p>{{data.title}}</p>
+          </div>
+  
+         
+            <center data-aos="fade-up" >
+                <div style="width: 400px; text-align: start;">
+                    <form  method="post">
+                        <label class="mb-3" for="amount"><b>Amount</b></label>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <button  type="button" style="width: 100%;" class=" text-dark btn btn-outline-warning btn-lg amount 1" value="25" >$25</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" style="width: 100%;" class=" text-dark btn btn-outline-warning btn-lg amount 2" value="50" >$50</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" style="width: 100%;" class=" text-dark btn btn-outline-warning btn-lg amount 3" value="100" >$100</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" style="width: 100%;" class=" text-dark btn btn-outline-warning btn-lg amount 4" value="500" >$500</button>
+                            </div>
+                            <input class="text-dark" id="amount" type="hidden" name="amount">
+                        </div>
+                        <input type="number" style="height: 50px;" name="amount" class="form-control mb-3" placeholder="Other Amount">
+                        <button class=" btn btn-outline-warning btn-lg rounded-pill" >Donate Now</button>
+                    </form>
+                </div>
+            </center>
+        
+  
+        </div>
+      </section>
+
+      {% include 'includes/modals.html' %}
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script>
+        $(document).on('click','.amount', function(){
+            var btn_val = $(this).val() 
+            $('#amount').val(btn_val)
+            console.log(btn_val)
+            
+        })
+
+        $(document).on('click','.1', function(){
+            $(this).addClass('btn-warning')
+            $('.2').removeClass('btn-warning')
+            $('.3').removeClass('btn-warning')
+            $('.4').removeClass('btn-warning')
+        })
+        $(document).on('click','.2', function(){
+            $(this).addClass('btn-warning')
+            $('.1').removeClass('btn-warning')
+            $('.3').removeClass('btn-warning')
+            $('.4').removeClass('btn-warning')
+        })
+
+        $(document).on('click','.3', function(){
+            $(this).addClass('btn-warning')
+            $('.1').removeClass('btn-warning')
+            $('.2').removeClass('btn-warning')
+            $('.4').removeClass('btn-warning')
+        })
+        $(document).on('click','.4', function(){
+            $(this).addClass('btn-warning')
+            $('.1').removeClass('btn-warning')
+            $('.2').removeClass('btn-warning')
+            $('.3').removeClass('btn-warning')
+        })
+
+      </script>
+
+
+  </main><!-- End #main -->
+{% endblock contents %}
+
+{% block footer %}
+{% endblock footer %}

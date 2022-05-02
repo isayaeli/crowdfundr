@@ -1,6 +1,6 @@
 
     {% for data in projects %}
-    <div class="modal fade mymodal"  id="projects{{data.id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade mymodal proj"  id="projects{{data.id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -52,7 +52,7 @@
                 {% endif %}
             </div>
             <div class="modal-footer">
-                <a class="btn btn-warning rounded-pill video" data-toggle="modal" data-target="#edit{{data.id}}" >Donate <i class="fa fa-donate" ></i></a>
+                <a  class="btn btn-warning rounded-pill video" href="{% url 'donate' data.id %}" >Donate <i class="fa fa-donate" ></i></a>
                 <button type="button" class="btn btn-secondary video rounded-pill" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -62,13 +62,13 @@
 
 
     {% for data in opportunities %}
-    <div class="modal fade mymodal"  id="staticBackdrop{{data.id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade mymodal "  id="staticBackdrop{{data.id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="staticBackdropLabel"><b>Opportunity Details</b></h5>
             <span id="success" class="text-success" ></span>
-            <button type="button" class="close btn btn-warning rounded-pill" data-dismiss="modal" aria-label="Close">
+            <button id="donate" type="button" class="close btn btn-warning rounded-pill" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
@@ -102,3 +102,4 @@
         </div>
     </div>
     {%  endfor %}
+
