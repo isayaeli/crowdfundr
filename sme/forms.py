@@ -32,3 +32,4 @@ class projectForm(forms.Form):
     project_overview = forms.CharField()
     proposal = forms.FileField(widget=forms.FileInput())
     video = forms.FileField(widget=forms.FileInput())
+    project_image = forms.FileField( widget=forms.FileInput())

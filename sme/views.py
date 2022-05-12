@@ -44,6 +44,7 @@ def add_project(request):
             project.project_overview = form.cleaned_data['project_overview']
             project.proposal = form.cleaned_data['proposal']
             project.video = form.cleaned_data['video']
+            project.project_image = form.cleaned_data['project_image']
             project.save()
             return redirect('index')
         else:
