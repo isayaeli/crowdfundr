@@ -17,7 +17,7 @@ headers = {'User-Agent': 'Mozilla/5.0'}
 
 
 def home(request):
-    projects = Project.objects.all().order_by('-id')[:4]
+    projects = Project.objects.all().order_by('-id')[:3]
     opportunities = Opportunity.objects.all().order_by('-id')[:4]
     sme = Profile.objects.filter(user_type = 'sme').count()
     donor = Profile.objects.filter(user_type = 'donor').count()
