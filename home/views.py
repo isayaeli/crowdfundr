@@ -74,6 +74,7 @@ def donate(request, id):
         print(request.POST)
         amount =  request.POST['amount1']
         order_id = ''+str(math.floor(1000000 + random.random()*9000000)),
+        print(order_id)
         return redirect(str(process_payment(amount, order_id)))
     context = {
         'data':project
@@ -82,16 +83,15 @@ def donate(request, id):
 
 
 def process_payment(amount, order_id):
-   
     payload = {
         "api":170, "code":101,"data":{
         "api_key":key,
         "order_id": order_id,
         "amount":amount,
-        "username":"CrowdImpact",
+        "username":"Afrogulio",
         "phone_number":"0783262616",
         "is_live":False,
-        # "cancel_url": "afrogulio.co.tz/canceled"
+        # "webhook_url": "www.crowdimpact.pythonanywhere.com/"
         }}
     response = requests.post(url,  headers=headers, json=payload)
     # print(response.json())
@@ -101,5 +101,29 @@ def process_payment(amount, order_id):
     return response
 
 
+
+from django.views.decorators.http import require_http_methods
+from django.http import HttpResponse
+
+
+@require_http_methods(['GET', 'POST'])
+def payment_response(request):
+    # package =  Package_Payment.objects.filter(user=request.user).last()
+    status=request.GET.get('status', None)
+    # tx_ref=request.GET.get('tx_ref', None)
+    print(status)
+    
+    # print(status)
+    # print(tx_ref)
+
+    # if package.txt_ref == tx_ref and status == 'successful':
+    #     package.verified = True
+    #     package.save()
+
+    context = {
+        'status':status,
+        # 'tx_ref':tx_ref
+    }
+    return render(request, 'dash/success.html', context)
 
 
