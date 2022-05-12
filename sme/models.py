@@ -10,6 +10,7 @@ class Project(models.Model):
     project_overview = models.TextField()
     proposal = models.FileField(upload_to='proposals', null=True, blank=True)
     video = models.FileField(upload_to='videos', null=True,blank=True)
+    project_image = models.FileField(upload_to='project_image', default='brief.png')
 
     def __str__(self):
         return self.title
