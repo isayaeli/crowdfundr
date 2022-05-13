@@ -56,7 +56,6 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item btn-transparent" href="#"><b>NGO'S</b></a>
               <a class="dropdown-item btn-transparent" href="#"><b>DONORS</b></a>
-              <!-- <a class="dropdown-item" href="#">Something else here</a> -->
             </div>
           </div>
           <!-- <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li> -->
@@ -90,7 +89,6 @@
             <a href="#intro" class="scrollto"><b>Home</b></a>
             <a href="#about" class="scrollto"><b>About</b></a>
             <a href="#"><b>Privacy Policy</b></a>
-            <a href="#"></a>
           </nav>
         </div>
       </div>
@@ -100,51 +98,7 @@
  {% endblock footer %}
 
 
-
-<!-- Modal -->
-<div class="modal fade"  id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"><b>Login</b></h5>
-        <span id="success" class="text-success" ></span>
-        <button type="button" class="close btn btn-warning rounded-pill" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <br>
-        <span><a href="{% url 'home' %}"><b>Proceed to your Dashboard</b></a></span>
-         <div id="loginDiv" >
-          <form id="login">
-            <div class="row ">
-                <div class="col-md-6">
-                    <input style="height: 50px; font-weight: bold;" id="username" type="text" class="form-control" placeholder="Username">
-                </div>
-                <div class="col-md-6">
-                  <input style="height: 50px; font-weight: bold;" id="password" type="password" class="form-control" placeholder="Password">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 mt-3">
-                <button class="btn btn-warning rounded-pill" style="height: 50px; width: 80%; margin-left:10%;" ><b>Login</b></button>
-                <br> <br>
-                  <span style="margin-left: 100px;">Don't have an account? <a class="text-warning"><b>Register Now</b></a></span>
-              </div>
-            </div>
-          </form>
-         </div>
-      </div>
-      <br>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div> -->
-    </div>
-  </div>
-</div>
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
