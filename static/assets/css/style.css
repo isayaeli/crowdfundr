@@ -1396,6 +1396,7 @@ video{
 .donate-form{
   position:fixed; 
   right: 0px;
+  /* padding-left: 20px; */
   top: 0px;
-  transition: .3s ease-in-out;
+  transition: 2s ease-in-out;
 }

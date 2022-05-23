@@ -260,7 +260,7 @@
 
 const navbar = document.querySelector('.donate');
 window.onscroll = () => {
-    if (window.scrollY > 300) {
+    if (window.scrollY > 240) {
         navbar.classList.add('donate-form');
     } else {
         navbar.classList.remove('donate-form');
