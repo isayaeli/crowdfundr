@@ -28,7 +28,7 @@
             <p>{{data.title}}</p>
           </div>
   
-          <div class="row">
+          <div class="row ">
             <div class="col-md-6" data-aos="fade-up">
                 <h3 ><b>{{ data.title }}</b></h3>
                 <div style="border-radius:15px ; border:2px solid #e6b619;" >
@@ -67,11 +67,26 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row mt-3 ">
+                  <div class="col-md-1">
+                      <div style="height:30px; width:30px; border-radius:50px; background-color: #e6b619; text-align: center;" >
+                        <i class="fa fa-user mt-2" ></i>
+                      </div>
+                  </div>
+                  <div class="col-md-8">
+                      <div>
+                          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis veritatis repudiandae maiores assumenda 
+                            libero dolorum maxime perferendis quasi tenetur, nemo corrupti ab 
+                            autem minus placeat facilis vel ad, deleniti consequuntur?</p>
+                      </div>
+                  </div>
+              </div>
                 
             </div>
-           <div class="col-md-6 mt-5">
-              <div style="width: 400px; text-align: start;" data-aos="fade-up"style="position:fixed;"  >
-                <form action="{% url 'donate' data.id %}" method="post">
+           <div class="col-md-6 mt-5  donate">
+              <div style=" border-radius: 10px; width: 400px; text-align: start; box-shadow: 4px 4px 10px rgb(0, 0, 0, 0.5);" data-aos="fade-up"  >
+                <form style="margin-left:20px; margin-right:20px;" action="{% url 'donate' data.id %}" method="post" class="pb-3 pt-3 pl-3" >
                     {% csrf_token %}
                     <label class="mb-3" for="amount"><b>Amount</b></label>
                     <div class="row mb-3">

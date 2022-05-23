@@ -1392,3 +1392,10 @@ video{
   width: 100%;
   height: auto;
 }
+
+.donate-form{
+  position:fixed; 
+  right: 0px;
+  top: 0px;
+  transition: 2s ease-in-out;
+}
