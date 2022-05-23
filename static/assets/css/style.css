@@ -1397,5 +1397,5 @@ video{
   position:fixed; 
   right: 0px;
   top: 0px;
-  transition: 2s ease-in-out;
+  transition: .3s ease-in-out;
 }
