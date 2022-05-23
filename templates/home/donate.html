@@ -88,6 +88,17 @@
               <div style=" border-radius: 10px; width: 400px; text-align: start; box-shadow: 4px 4px 10px rgb(0, 0, 0, 0.5);" data-aos="fade-up"  >
                 <form style="margin-left:20px; margin-right:20px;" action="{% url 'donate' data.id %}" method="post" class="pb-3 pt-3 pl-3" >
                     {% csrf_token %}
+                    <details>
+                      <summary>Donor Information</summary>
+                      <div class="row mb-3">
+                        <div class="col-md-4">
+                            <button  type="button" style="width: 100%; height: 50px;" class=" text-dark btn-sm btn btn-outline-warning btn-lg amount 1" value="25" >Anomymous</button>
+                        </div>
+                        <div class="col-md-6">
+                            <input placeholder="Your Names" style="height:50px;" type="text" class="form-control" >
+                        </div>
+                      </div>
+                    </details>
                     <label class="mb-3" for="amount"><b>Amount</b></label>
                     <div class="row mb-3">
                         <div class="col-md-3">
