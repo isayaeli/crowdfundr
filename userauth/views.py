@@ -41,7 +41,7 @@ def register_request(request):
                 profile = Profile.objects.get(user=request.user)
                 profile.user_type = user_type
                 profile.save()
-                messages.success(request, "Successful Registered! you can now proceed o login")
+                messages.success(request, "Successful Registered! you can now proceed to login")
                 return redirect('login')
  
     return render(request, 'userauth/register.html', )
