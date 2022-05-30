@@ -85,14 +85,14 @@
                 
             </div>
            <div class="col-md-6 mt-5  donate">
-              <div style=" border-radius: 7px; width: 400px; text-align: start; box-shadow: 4px 4px 10px rgb(0, 0, 0, 0.3);" data-aos="fade-up"  >
+              <div style=" border-radius: 7px; width: 600px; text-align: start; box-shadow: 4px 4px 10px rgb(0, 0, 0, 0.3);" data-aos="fade-up"  >
                 <div class="goal pt-3 pb-3" style="margin-left:20px; margin-right:20px;" >
                   <div style="display:inline-flex;" >
-                      <span>$1000 of $10000</span>
-                      <span style="float:right; right: 40px; position:absolute;" >10%</span>
+                      <span>Tsh {{data.get_donation_sum}} of {{data.goal}}</span>
+                      <span style="float:right; right: 30px; position:absolute;" >{{data.get_percent}}%</span>
                   </div>
                   <div class="bg-secondary rounded-pill" >
-                    <div style="height:10px; width: 10%;" class="rounded-pill bg-success">.</div>
+                    <div style=" background-color: #03e203; height:10px; width: {{data.get_percent}}%;" class="rounded-pill">.</div>
                   </div>
                 </div>
                 <span style="padding-left:20px;" >5.6k donations</span>
@@ -111,17 +111,14 @@
                     </details>
                     <label class="mb-3" for="amount"><b>Amount</b></label>
                     <div class="row mb-3">
-                        <div class="col-md-3">
-                            <button  type="button" style="width: 100%;" class=" rounded-pill text-dark btn btn-outline-warning btn-lg amount 1" value="25" >Tsh 2,500</button>
+                        <div class="col-md-4">
+                            <button type="button" style="width: 100%;" class=" rounded-pill text-dark btn btn-outline-warning btn-lg amount 2" value="5000" >Tsh 5,000</button>
                         </div>
-                        <div class="col-md-3">
-                            <button type="button" style="width: 100%;" class=" rounded-pill text-dark btn btn-outline-warning btn-lg amount 2" value="50" >Tsh 5,000</button>
+                        <div class="col-md-4">
+                            <button type="button" style="width: 100%;" class=" rounded-pill text-dark btn btn-outline-warning btn-lg amount 3" value="10000" >Tsh 10,000</button>
                         </div>
-                        <div class="col-md-3">
-                            <button type="button" style="width: 100%;" class=" rounded-pill text-dark btn btn-outline-warning btn-lg amount 3" value="100" >Tsh 10,000</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" style="width: 100%;" class=" rounded-pill text-dark btn btn-outline-warning btn-lg amount 4" value="500" >Tsh 50,000</button>
+                        <div class="col-md-4">
+                            <button type="button" style="width: 100%;" class=" rounded-pill text-dark btn btn-outline-warning btn-lg amount 4" value="50000" >Tsh 50,000</button>
                         </div>
                         <input class="text-dark" id="amount" type="hidden" name="amount1">
                     </div>
@@ -129,26 +126,25 @@
                     <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate Now</button>
                 </form>
                 <small style="margin-left:20px;">Recent Donations</small>
+                {% for data in data.get_all_donations %}
                 <div class="recent-donor d-inline-flex pb-3 pt-3" style="border-bottom: 1px solid #cecece; width: 90%; margin-left: 20px; margin-right: 20px;">
                   <div style="height:30px; width:30px; margin-left:20px; margin-top: 10px; border-radius:50px; background-color: #e6b619; text-align: center;" >
                     <i class="fa fa-user mt-2" ></i>
                   </div>
                     <div style="display:block;" class="d-block">
-                        <strong style="margin:20px;">Isaya Eli</strong>
+                        <strong style="margin:20px;">{{data.name}}</strong>
                         <br>
-                        <small style="margin:20px;" ><b>Donated $300,000</b></small>
+                        <small style="margin:20px;" ><b>Donated Tsh {{data.donation}}</b></small>
                     </div>
                  </div>
+                 {% empty %}
                  <div class="recent-donor d-inline-flex pb-3 pt-3" style="border-bottom: 1px solid #cecece; width: 90%; margin-left: 20px; margin-right: 20px;">
-                  <div style="height:30px; width:30px; margin-left:20px; margin-top: 10px; border-radius:50px; background-color: #e6b619; text-align: center;" >
-                    <i class="fa fa-user mt-2" ></i>
-                  </div>
+              
                     <div style="display:block;" class="d-block">
-                        <strong style="margin:20px;">Isaya Eli</strong>
-                        <br>
-                        <small style="margin:20px;" ><b>Donated $10,000</b></small>
+                        <strong style="margin:20px;">No funds donated yet</strong>
                     </div>
                  </div>
+                 {% endfor %}
        
             </div>
             

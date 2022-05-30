@@ -21,6 +21,10 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+    @property
+    def get_all_donations(self):
+        all_ = Donation.objects.filter(user=self.id)[:2]
+        return all_
 
     @property
     def get_donation_sum(self):
