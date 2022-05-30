@@ -15,10 +15,30 @@ class Project(models.Model):
     proposal = models.FileField(upload_to='proposals', null=True, blank=True)
     video = models.FileField(upload_to='videos', null=True,blank=True)
     project_image = models.FileField(upload_to='project_image', default='brief.png')
+    goal = models.IntegerField(default=0)
     created_on =  models.DateTimeField(default=datetime.now)
 
     def __str__(self):
         return self.title
+
+
+    @property
+    def get_donation_sum(self):
+        donations = Donation.objects.filter(user=self.id)
+        sum_ =  sum(donations.values_list('donation', flat=True))
+        return sum_
+
+    @property
+    def get_percent(self):
+      
+        donations = Donation.objects.filter(user=self.id)
+        sum_ =  sum(donations.values_list('donation', flat=True))
+        try:
+           percent = round( sum_/ self.goal * 100)
+        except ZeroDivisionError:
+            percent =  0
+        return percent
+
 
 
     @property
@@ -74,7 +94,7 @@ class Project(models.Model):
 class Donation(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     name  = models.CharField(max_length=100)
-    donation = models.CharField(max_length=255)
+    donation = models.IntegerField(default=0)
     verified =  models.BooleanField(default=False)
 
     def __str__(self):

@@ -26,6 +26,7 @@ class profileForm(forms.ModelForm):
 
 class projectForm(forms.Form):
     title =  forms.CharField()
+    goal =  forms.CharField()
     project_duration = forms.CharField()
     beneficiaries = forms.CharField()
     target_area = forms.CharField()

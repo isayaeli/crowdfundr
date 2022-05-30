@@ -38,6 +38,7 @@ def add_project(request):
         if form.is_valid():
             project.user = request.user
             project.title = form.cleaned_data['title']
+            project.goal = form.cleaned_data['goal']
             project.project_duration = form.cleaned_data['project_duration']
             project.beneficiaries = form.cleaned_data['beneficiaries']
             project.target_area = form.cleaned_data['target_area']

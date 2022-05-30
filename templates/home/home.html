@@ -67,7 +67,6 @@
           <h2>Projects</h2>
           <p>Recent Projects From SMEs And NGOs</p>
         </div>
-
         <div class="row">
           {% for data in projects %}
           <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
@@ -80,20 +79,22 @@
                 <a  class="description" data-toggle="modal" data-target="#projects{{data.id}}"><i class="bi bi-arrow-right"></i><b>Read More</b></a></p>
 
                 <div class="goal mt-3 mb-3" >
+                  
                   <div style="display:inline-flex;" >
-                      <span ><b>$1000  of  $10000</b></span>
-                      <span style="float:right; right: 40px; position:absolute;" >10%</span>
+                      <span ><b>Tsh {{data.get_donation_sum}}  of Tsh {{data.goal}}</b></span>
+                      <span style="float:right; right: 40px; position:absolute;" >{{data.get_percent}}%</span>
                   </div>
+              
                   <div class="bg-secondary rounded-pill" >
-                    <div style="height:10px; width: 10%;" class="rounded-pill bg-success">.</div>
+                    <div style="height:10px; width: {{data.get_percent}}%;" class="rounded-pill bg-success" id="prog{{forloop.counter}}" >.</div>
                   </div>
+               
                 </div>
                 <div style="display:inline-flex;" class="mt-2" >
                   <a class="btn btn-warning rounded-pill" data-toggle="modal" data-target="#projects{{data.id}}">Read More <i class="bi bi-arrow-right"></i></a>
                   <a style="float:right; position:absolute; right: 20px;"  class="btn btn-dark rounded-pill "  href="{% url 'donate' data.id %}"">Donate </a>
                 </div>
             </div>
-           
           </div>
           {% endfor %}
         <center  data-aos="fade-up" data-aos-delay="100" ><a class="btn btn-outline-warning mt-5 rounded-pill"  href="{% url 'projects' %}"><b>More Projects</b></a></center>
@@ -336,7 +337,7 @@
 
     <section id="projects" class="services">
       <div class="container">
-
+        
         <div class="section-title" data-aos="fade-up">
           <h2>How it Works</h2>
           <p>For SMEs & NGOs</p>
@@ -533,4 +534,5 @@
 
 
   </main><!-- End #main -->
+
 {% endblock contents %}
