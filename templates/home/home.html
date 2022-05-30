@@ -84,11 +84,15 @@
                       <span ><b>Tsh {{data.get_donation_sum}}  of Tsh {{data.goal}}</b></span>
                       <span style="float:right; right: 40px; position:absolute;" >{{data.get_percent}}%</span>
                   </div>
-              
+                  {% if data.get_percent < 100 %}
                   <div class="bg-secondary rounded-pill" >
                     <div style=" background-color: #03e203; height:10px; width: {{data.get_percent}}%;" class="rounded-pill" id="prog{{forloop.counter}}" >.</div>
                   </div>
-               
+                  {% else %}
+                  <div class="bg-secondary rounded-pill" >
+                    <div style=" background-color: #03e203; height:10px; width: 100%;" class="rounded-pill" id="prog{{forloop.counter}}" >.</div>
+                  </div>
+                  {% endif %}
                 </div>
                 <div style="display:inline-flex;" class="mt-2" >
                   <a class="btn btn-warning rounded-pill" data-toggle="modal" data-target="#projects{{data.id}}">Read More <i class="bi bi-arrow-right"></i></a>

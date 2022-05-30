@@ -91,21 +91,28 @@
                       <span>Tsh {{data.get_donation_sum}} of {{data.goal}}</span>
                       <span style="float:right; right: 30px; position:absolute;" >{{data.get_percent}}%</span>
                   </div>
+                  {% if data.get_percent < 100 %}
                   <div class="bg-secondary rounded-pill" >
-                    <div style=" background-color: #03e203; height:10px; width: {{data.get_percent}}%;" class="rounded-pill">.</div>
+                    <div style=" background-color: #03e203; height:10px; width: {{data.get_percent}}%;" class="rounded-pill" id="prog{{forloop.counter}}" >.</div>
                   </div>
+                  {% else %}
+                  <div class="bg-secondary rounded-pill" >
+                    <div style=" background-color: #03e203; height:10px; width: 100%;" class="rounded-pill" id="prog{{forloop.counter}}" >.</div>
+                  </div>
+                  {% endif %}
                 </div>
-                <span style="padding-left:20px;" >5.6k donations</span>
+                <span style="padding-left:20px;" >{{data.get_all_donations.count}} donation{{data.get_all_donations.count|pluralize}}</span>
                 <form style="margin-left:20px; margin-right:20px;" action="{% url 'donate' data.id %}" method="post" class="pb-3 pt-3 pl-3" >
                     {% csrf_token %}
                     <details>
                       <summary>Donor Information</summary>
                       <div class="row mb-3">
                         <div class="col-md-4">
-                            <button  type="button" style="width: 100%; height: 50px;" class=" rounded-pill text-dark btn-sm btn btn-outline-warning btn-lg amount 1" value="25" >Anomymous</button>
-                        </div>
+                            <button value="Anonymous"  type="button" style="width: 100%; height: 50px;" class=" rounded-pill text-dark btn-sm btn btn-outline-warning btn-lg name 1" value="25" >Anomymous</button>
+                            
+                          </div>
                         <div class="col-md-6">
-                            <input placeholder="Your Names" style="height:50px;" type="text" class="form-control" >
+                            <input id="name"  placeholder="Your Names" style="height:50px;" name="name" type="text" class="form-control" >
                         </div>
                       </div>
                     </details>
@@ -120,9 +127,9 @@
                         <div class="col-md-4">
                             <button type="button" style="width: 100%;" class=" rounded-pill text-dark btn btn-outline-warning btn-lg amount 4" value="50000" >Tsh 50,000</button>
                         </div>
-                        <input class="text-dark" id="amount" type="hidden" name="amount1">
+                        <!-- <input class="text-dark" id="amount" type="hidden" name="amount1"> -->
                     </div>
-                    <input type="number" style="height: 50px;" name="amount" class="form-control mb-3" placeholder="Other Amount">
+                    <input id="amount" type="number" style="height: 50px;" name="amount" class="form-control mb-3" placeholder="Other Amount">
                     <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate Now</button>
                 </form>
                 <small style="margin-left:20px;">Recent Donations</small>
@@ -164,6 +171,13 @@
         $(document).on('click','.amount', function(){
             var btn_val = $(this).val() 
             $('#amount').val(btn_val)
+            // console.log(btn_val)
+            
+        })
+
+        $(document).on('click','.name', function(){
+            var btn_val = $(this).val() 
+            $('#name').val(btn_val)
             console.log(btn_val)
             
         })
@@ -171,9 +185,12 @@
         $(document).on('focus','#amount', function(){
             var btn_val = $(this).val() 
             $('#amount').val(btn_val)
-            console.log(btn_val)
+            // console.log(btn_val)
             
         })
+
+
+        
 
         $(document).on('click','.1', function(){
             $(this).addClass('btn-warning')

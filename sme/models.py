@@ -23,19 +23,19 @@ class Project(models.Model):
 
     @property
     def get_all_donations(self):
-        all_ = Donation.objects.filter(user=self.id)[:2]
+        all_ = Donation.objects.filter(project=self.id).order_by('-id')[:2]
         return all_
 
     @property
     def get_donation_sum(self):
-        donations = Donation.objects.filter(user=self.id)
+        donations = Donation.objects.filter(project=self.id)
         sum_ =  sum(donations.values_list('donation', flat=True))
         return sum_
 
     @property
     def get_percent(self):
       
-        donations = Donation.objects.filter(user=self.id)
+        donations = Donation.objects.filter(project=self.id)
         sum_ =  sum(donations.values_list('donation', flat=True))
         try:
            percent = round( sum_/ self.goal * 100)
@@ -97,6 +97,7 @@ class Project(models.Model):
 
 class Donation(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
     name  = models.CharField(max_length=100)
     donation = models.IntegerField(default=0)
     verified =  models.BooleanField(default=False)

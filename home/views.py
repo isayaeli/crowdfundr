@@ -3,7 +3,7 @@ import math
 import random
 import requests
 from django.shortcuts import get_object_or_404, redirect, render
-from sme.models import Project
+from sme.models import Donation, Project
 from donors.models import Opportunity
 from userauth.models import Profile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -72,7 +72,12 @@ def donate(request, id):
     project  = get_object_or_404(Project, id=id)
     if request.method == 'POST':
         print(request.POST)
-        amount =  request.POST['amount1']
+        amount =  int(request.POST['amount'])
+        name =  request.POST['name']
+        user = project.user
+        project = project.id
+        obj  = Donation(user=user, project_id=project,name=name,donation=amount,)
+        obj.save()
         order_id = ''+str(math.floor(1000000 + random.random()*9000000)),
         print(order_id)
         return redirect(str(process_payment(amount, order_id)))

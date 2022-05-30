@@ -104,3 +104,5 @@ def sme_profile(request):
     }
     return render(request, 'sme/profile.html', context)
 
+
+
