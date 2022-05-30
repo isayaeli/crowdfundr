@@ -1,4 +1,5 @@
 from datetime import datetime
+from unicodedata import name
 from django.db import models
 from django.contrib.auth.models import User
 import math
@@ -67,4 +68,14 @@ class Project(models.Model):
                 return str(years) + " year ago"
             else:
                 return str(years) + " years ago"
-                
+
+
+
+class Donation(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    name  = models.CharField(max_length=100)
+    donation = models.CharField(max_length=255)
+    verified =  models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.user)
