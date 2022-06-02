@@ -242,7 +242,7 @@
     <div class="modal-dialog modal-lg" style="border:1px solid black; border-radius:10px;">
     <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title text-dark" id="staticBackdropLabel"><b>Add Project</b></h5>
+        <h5 class="modal-title text-dark" id="staticBackdropLabel"><b>Update Project</b></h5>
         <span id="success" class="text-success" ></span>
         <button type="button" class="close video" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times; close</span>
@@ -260,6 +260,11 @@
                         <label for="">Project Duration *</label>
                         <input style="height: 50px;" required type="text" name="project_duration" value="{{data.project_duration}}" class="form-control ">
                     </div>
+                    <div class="col-md-12 mt-2">
+                        <label for="">Fund Raising Goal *</label>
+                        <input style="height: 50px;" required type="text" name="goal" class="form-control" value="{{data.goal}}">
+                    </div>
+                    
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-6 ">

@@ -62,6 +62,7 @@ def update_project(request,id):
         project.beneficiaries =request.POST['beneficiaries']
         project.target_area = request.POST['target_area']
         project.project_overview = request.POST['project_overview']
+        project.goal = int( request.POST['goal'].replace(',',''))
         if 'proposal' in request.FILES:
             project.proposal = request.FILES['proposal']
         if 'video' in request.FILES:
