@@ -51,8 +51,10 @@
                 <div style="display:block;" >
                   <h5><b>A word of Support</b></h5>
                   <span>Please donate to share words of support.</span>
-                  <button class="btn btn-outline-warning rounded-pill btn-sm" style="margin-left:50px;" >Add a word of support</button>
+                  <button  data-toggle="modal" data-target="#word" class="btn btn-outline-warning rounded-pill btn-sm" style="margin-left:50px;" >Add a word of support</button>
                 </div>
+
+                {% for data in data.words %}
                 <div class="row mt-3 ">
                     <div class="col-md-1">
                         <div style="height:30px; width:30px; border-radius:50px; background-color: #e6b619; text-align: center;" >
@@ -61,27 +63,12 @@
                     </div>
                     <div class="col-md-8">
                         <div>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis veritatis repudiandae maiores assumenda 
-                              libero dolorum maxime perferendis quasi tenetur, nemo corrupti ab 
-                              autem minus placeat facilis vel ad, deleniti consequuntur?</p>
+                            <p>{{ data.word }}</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="row mt-3 ">
-                  <div class="col-md-1">
-                      <div style="height:30px; width:30px; border-radius:50px; background-color: #e6b619; text-align: center;" >
-                        <i class="fa fa-user mt-2" ></i>
-                      </div>
-                  </div>
-                  <div class="col-md-8">
-                      <div>
-                          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis veritatis repudiandae maiores assumenda 
-                            libero dolorum maxime perferendis quasi tenetur, nemo corrupti ab 
-                            autem minus placeat facilis vel ad, deleniti consequuntur?</p>
-                      </div>
-                  </div>
-              </div>
+                {% endfor %}
+  
                 
             </div>
            <div class="col-md-6 mt-5  donate">

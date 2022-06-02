@@ -42,6 +42,11 @@ class Project(models.Model):
         except ZeroDivisionError:
             percent =  0
         return percent
+    
+    @property
+    def words(self):
+        word = Word_of_support.objects.filter(project=self.id)
+        return word
 
 
 
@@ -102,6 +107,18 @@ class Donation(models.Model):
     donation = models.IntegerField(default=0)
     verified =  models.BooleanField(default=False)
     donation_id =  models.CharField(max_length=255)
+    donated_on = models.DateTimeField(default=datetime.now())
+    
+
+    def __str__(self):
+        return str(self.user)
+
+
+class Word_of_support(models.Model):
+    word = models.TextField(null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    added_on = models.DateTimeField(default=datetime.now())
 
     def __str__(self):
         return str(self.user)

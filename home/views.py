@@ -3,7 +3,7 @@ import string
 import random
 import requests
 from django.shortcuts import get_object_or_404, redirect, render
-from sme.models import Donation, Project
+from sme.models import Donation, Project, Word_of_support
 from donors.models import Opportunity
 from userauth.models import Profile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -141,9 +141,6 @@ def payment_response(request):
     }
     return render(request, 'home/success.html', context)
 
-
-
-
 @require_http_methods(['GET', 'POST'])
 def payment_cancelled(request):
  
@@ -151,3 +148,14 @@ def payment_cancelled(request):
        
     }
     return render(request, 'home/cancelled.html', context)
+
+
+def word(request, id):
+    if request.method == 'POST':
+        word =  request.POST.get('word')
+        user = request.POST['user']
+        project = request.POST['project']
+        obj = Word_of_support(user_id=user,project_id=project,word=word)
+        obj.save()
+        return redirect('donate',id=id)
+        
