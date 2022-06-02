@@ -1,5 +1,5 @@
 
-import math
+import string
 import random
 import requests
 from django.shortcuts import get_object_or_404, redirect, render
@@ -71,15 +71,15 @@ def opportunities(request):
 def donate(request, id):
     project  = get_object_or_404(Project, id=id)
     if request.method == 'POST':
-        print(request.POST)
+        # print(request.POST)
+        order_id = ''.join(random.sample(string.ascii_lowercase, 12))
         amount =  int(request.POST['amount'])
         name =  request.POST['name']
         user = project.user
         project = project.id
-        obj  = Donation(user=user, project_id=project,name=name,donation=amount,)
+        obj  = Donation(user=user, project_id=project,name=name,donation=amount,donation_id=order_id)
         obj.save()
-        order_id = ''+str(math.floor(1000000 + random.random()*9000000)),
-        print(order_id)
+        # print(order_id)
         return redirect(str(process_payment(amount, order_id)))
     context = {
         'data':project
@@ -97,8 +97,8 @@ def process_payment(amount, order_id):
         "phone_number":"0783262616",
         "is_live":False,
         "success_url": "https://9a00-41-222-180-250.in.ngrok.io/success",
-        "cancel_url": "https://9a00-41-222-180-250.in.ngrok.io/cancel",
-        # "webhook_url": "https://9a00-41-222-180-250.in.ngrok.io/success",
+        # "cancel_url": "https://9a00-41-222-180-250.in.ngrok.io/cancel",
+        # "webhook_url": "https://9a00-41-222-180-250.in.ngrok.io/response",
         
       
      
@@ -115,24 +115,29 @@ def process_payment(amount, order_id):
 from django.views.decorators.http import require_http_methods
 from django.http import HttpResponse
 
-
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
 @require_http_methods(['GET', 'POST'])
 def payment_response(request):
-    # package =  Package_Payment.objects.filter(user=request.user).last()
-    status=request.POST.get('order_id', None)
-    # tx_ref=request.GET.get('tx_ref', None)
-    print(status)
-    
-    # print(status)
-    # print(tx_ref)
-
-    # if package.txt_ref == tx_ref and status == 'successful':
-    #     package.verified = True
-    #     package.save()
+  
+    payload = {"api":170, "code":103,"data":{
+     "api_key": key
+    }
+    }
+    response = requests.post(url,  headers=headers, json=payload)
+    # print(response.json())
+    response = response.json()
+    # print(response)
+    donation = Donation.objects.all()
+    for data in response['orders']:
+        for d in donation:
+            if data['client_order_id'] in d.donation_id and data['status'] == "paid":
+               d.verified = True
+               d.save()
+        
 
     context = {
-        'status':status,
-        # 'tx_ref':tx_ref
+     
     }
     return render(request, 'home/success.html', context)
 
@@ -141,20 +146,8 @@ def payment_response(request):
 
 @require_http_methods(['GET', 'POST'])
 def payment_cancelled(request):
-    # package =  Package_Payment.objects.filter(user=request.user).last()
-    status=request.POST.get('order_id', None)
-    # tx_ref=request.GET.get('tx_ref', None)
-    print(status)
-    
-    # print(status)
-    # print(tx_ref)
-
-    # if package.txt_ref == tx_ref and status == 'successful':
-    #     package.verified = True
-    #     package.save()
-
+ 
     context = {
-        'status':status,
-        # 'tx_ref':tx_ref
+       
     }
     return render(request, 'home/cancelled.html', context)

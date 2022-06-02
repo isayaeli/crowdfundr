@@ -6,7 +6,7 @@
 
   <main id="main">
     <!-- ======= Breadcrumbs Section ======= -->
-    <section class="breadcrumbs mt-3 mb-3">
+    <section class="breadcrumbs mt-0 mb-3">
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
@@ -38,6 +38,8 @@
                 </div>
               </div>
             </div>
+            {% empty %}
+            <center data-aos="fade-up" > <p>No Opportunities available for now</p></center>
             {% endfor %}
             <nav aria-label="Page navigation example" class="mt-5">
                 {% if opportunities.has_other_pages %}

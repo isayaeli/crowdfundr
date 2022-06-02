@@ -6,7 +6,7 @@
 
   <main id="main">
     <!-- ======= Breadcrumbs Section ======= -->
-    <section class="breadcrumbs mt-3 mb-3">
+    <section class="breadcrumbs mt-0 mb-3">
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
@@ -30,30 +30,36 @@
   
           <div class="row">
             {% for data in projects %}
-            <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mt-5 mb-lg-0">
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
               <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                <div class="mb-3">
-                  <img style="height:250px; width:100%" src="{{data.project_image.url}}" alt="image">
+                <div class="mb-3" style="height: 250px;">
+                  <img style="height:100%; width:100%" src="{{data.project_image.url}}" alt="image">
                 </div>
                 <h4 class="title"><a data-toggle="modal" data-target="#projects{{data.id}}">{{data.title}}</a></h4>
                 <p class="description">{{data.project_overview|truncatechars:100}} 
                   <a  class="description" data-toggle="modal" data-target="#projects{{data.id}}"><i class="bi bi-arrow-right"></i><b>Read More</b></a></p>
   
                   <div class="goal mt-3 mb-3" >
+                    
                     <div style="display:inline-flex;" >
-                        <span>$1000 of $10000</span>
-                        <span style="float:right; right: 40px; position:absolute;" >10%</span>
+                        <span ><b>Tsh {{data.get_donation_sum}}  of Tsh {{data.goal}}</b></span>
+                        <span style="float:right; right: 40px; position:absolute;" >{{data.get_percent}}%</span>
                     </div>
+                    {% if data.get_percent < 100 %}
                     <div class="bg-secondary rounded-pill" >
-                      <div style="height:10px; width: 10%;" class="rounded-pill bg-success">.</div>
+                      <div style=" background-color: #03e203; height:10px; width: {{data.get_percent}}%;" class="rounded-pill" id="prog{{forloop.counter}}" >.</div>
                     </div>
+                    {% else %}
+                    <div class="bg-secondary rounded-pill" >
+                      <div style=" background-color: #03e203; height:10px; width: 100%;" class="rounded-pill" id="prog{{forloop.counter}}" >.</div>
+                    </div>
+                    {% endif %}
                   </div>
                   <div style="display:inline-flex;" class="mt-2" >
                     <a class="btn btn-warning rounded-pill" data-toggle="modal" data-target="#projects{{data.id}}">Read More <i class="bi bi-arrow-right"></i></a>
                     <a style="float:right; position:absolute; right: 20px;"  class="btn btn-dark rounded-pill "  href="{% url 'donate' data.id %}"">Donate </a>
                   </div>
               </div>
-             
             </div>
             {% endfor %}
 
