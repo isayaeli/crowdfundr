@@ -25,9 +25,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','9a00-41-222-180-250.in.ngrok.io']
 
-
+CSRF_TRUSTED_ORIGINS = ['https://9a00-41-222-180-250.in.ngrok.io']
 # Application definition
 
 INSTALLED_APPS = [
@@ -137,5 +137,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 SWAHILIES_SECRET_KEY = config('SWAHILIES_SECRET_KEY')
+API_KEY = config('API_KEY')
 
 USE_THOUSAND_SEPARATOR = True

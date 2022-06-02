@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
 
 # Create your views here.
-key = settings.SWAHILIES_SECRET_KEY
+key = settings.API_KEY
 url = "https://swahiliesapi.invict.site/Api"
 headers = {'User-Agent': 'Mozilla/5.0'}
 
@@ -93,10 +93,15 @@ def process_payment(amount, order_id):
         "api_key":key,
         "order_id": order_id,
         "amount":amount,
-        "username":"Afrogulio",
+        "username":"CrowdImpact",
         "phone_number":"0783262616",
         "is_live":False,
-        # "webhook_url": "www.crowdimpact.pythonanywhere.com/"
+        "success_url": "https://9a00-41-222-180-250.in.ngrok.io/success",
+        "cancel_url": "https://9a00-41-222-180-250.in.ngrok.io/cancel",
+        # "webhook_url": "https://9a00-41-222-180-250.in.ngrok.io/success",
+        
+      
+     
         }}
     response = requests.post(url,  headers=headers, json=payload)
     # print(response.json())
@@ -114,7 +119,7 @@ from django.http import HttpResponse
 @require_http_methods(['GET', 'POST'])
 def payment_response(request):
     # package =  Package_Payment.objects.filter(user=request.user).last()
-    status=request.GET.get('status', None)
+    status=request.POST.get('order_id', None)
     # tx_ref=request.GET.get('tx_ref', None)
     print(status)
     
@@ -129,6 +134,27 @@ def payment_response(request):
         'status':status,
         # 'tx_ref':tx_ref
     }
-    return render(request, 'dash/success.html', context)
+    return render(request, 'home/success.html', context)
 
 
+
+
+@require_http_methods(['GET', 'POST'])
+def payment_cancelled(request):
+    # package =  Package_Payment.objects.filter(user=request.user).last()
+    status=request.POST.get('order_id', None)
+    # tx_ref=request.GET.get('tx_ref', None)
+    print(status)
+    
+    # print(status)
+    # print(tx_ref)
+
+    # if package.txt_ref == tx_ref and status == 'successful':
+    #     package.verified = True
+    #     package.save()
+
+    context = {
+        'status':status,
+        # 'tx_ref':tx_ref
+    }
+    return render(request, 'home/cancelled.html', context)
