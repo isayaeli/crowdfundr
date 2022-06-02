@@ -526,7 +526,7 @@
                 {% csrf_token %}
                 <div class="row">
                 <input type="hidden" value="{{data.id}}" name="project">
-                <input type="text" value="{{data.user.id}}" name="user">
+                <input type="hidden" value="{{data.user.id}}" name="user">
                 <div class="row mt-3 mb-3">
                     <div class="col-md-12">
                         <textarea placeholder="Type here" required class="form-control" name="word" id="" cols="30" rows="5"></textarea>
