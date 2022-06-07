@@ -1,8 +1,10 @@
+
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Project
 from .forms import *
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 # Create your views here.
 def index(request):
     projects =  Project.objects.filter(user=request.user)
@@ -14,7 +16,7 @@ def index(request):
 
 def projects(request):
     projects =  Project.objects.filter(user=request.user)
-
+    
     page = request.GET.get('page', 1)
     paginator = Paginator(projects, 10)
     try:
@@ -108,9 +110,8 @@ def sme_profile(request):
 
 def ngos(request):
     ngos = Profile.objects.filter(user_type='sme')
-    projects = Project.objects.all().order_by('-id')
+ 
     context  = {
         'ngos':ngos,
-        'projects':projects
     }
     return render(request, 'sme/ngos.html', context)

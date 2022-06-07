@@ -13,7 +13,7 @@
           <h2><a href="{% url 'home' %}"><img src="{% static 'assets/img/logo.png' %}" style="height: 70x;width: 150px;" alt="" class="img-fluid"></a></h2>
           <ol>
             <li><a href="{% url 'home' %}">Home</a></li>
-            <li>Project</li>
+            <li>NGOs</li>
           </ol>
         </div>
 
@@ -85,7 +85,7 @@
                   <hr>
                   <div class="row">
                       <div class="col-md-12">
-                            <center><button class=" btn btn-outline-warning rounded-pill" >View More</button></center>
+                            <center><a href="/projects?q={{data.user.id}}" class=" btn btn-outline-warning rounded-pill" >View More</a></center>
                       </div>
                   </div>
                   

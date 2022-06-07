@@ -8,7 +8,7 @@ from donors.models import Opportunity
 from userauth.models import Profile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
-
+from django.db.models import Q
 # Create your views here.
 key = settings.API_KEY
 url = "https://swahiliesapi.invict.site/Api"
@@ -33,6 +33,12 @@ def home(request):
 
 def projects(request):
     projects = Project.objects.all().order_by('-id')
+    qs = request.GET.get('q')
+    if qs :
+        projects = Project.objects.filter(
+            Q(user=qs)|
+            Q(title__icontains=qs)
+        )
     page = request.GET.get('page', 1)
     paginator = Paginator(projects, 10)
     try:
