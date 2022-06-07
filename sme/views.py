@@ -95,7 +95,7 @@ def sme_profile(request):
             pform.save()
            
             messages.success(request, f"Succesful updated profile")
-            return redirect('profile')
+            return redirect('sme_profile')
     else:
         uform = userForm(instance=request.user)
         pform = profileForm(instance=request.user.profile)
