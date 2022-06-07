@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+{% block contents %}
+
+  <main id="main">
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs mt-0 mb-3">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2><a href="{% url 'home' %}"><img src="{% static 'assets/img/logo.png' %}" style="height: 70x;width: 150px;" alt="" class="img-fluid"></a></h2>
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li>Project</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+       
+    <section id="projects" class="services">
+        <div class="container">
+  
+          <div class="section-title" data-aos="fade-up">
+            <h2>NGOs</h2>
+            <p>All SMEs And NGOs ordered by most Recent</p>
+          </div>
+          
+          <div class="row">
+              {% for data in ngos %}
+              <div class="col-md-3">
+                  <div class="outer">
+                      <div class="inner text-center">
+                            <img class="mt-4" height="40" width="40" src="{{data.user.profile.image.url}}" alt="">
+                            <a class="text-dark" data-toggle="modal" data-target="#ngo{{data.id}}">
+                                <h3 class="mt-3"  >{{data.user.username}}</h3>
+                            </a>
+                            <p class="pt-2 pb-3" >
+                                {{data.overview}}
+                            </p>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+     
+  
+        </div>
+      </section>
+
+      {% for data in ngos %}
+      <div class="modal fade mymodal"  id="ngo{{data.id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+          <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel"><b>{{data.user.username|capfirst}}</b></h5>
+              <span id="success" class="text-success" ></span>
+              <button type="button" class=" btn btn-secondary rounded-pill btn-sm close video" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">close</span>
+              </button>
+              </div>
+              <div class="modal-body">
+                  <div class="row mb-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5><b>NGO Overview</b></h5>
+                            <p>{{ data.overview }}</p>
+                        </div>
+                    </div>
+                      <div class="col-md-4">
+                          <h5>Latest Project</h5>
+                          <span><b>{{data.get_projects}}</b></span>
+                      </div>
+                      <div class="col-md-4">
+                          <h5>Fund Raising Goal</h5>
+                          <span><b>{{data.get_projects.goal}}</b> </span>
+                      </div>
+                      <div class="col-md-4">
+                          <h5>Fund Raised</h5>
+                          <span><b>{{data.get_projects.get_donation_sum}}</b> ({{data.get_projects.get_percent}}%)</span>
+                      </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                      <div class="col-md-12">
+                            <center><button class=" btn btn-outline-warning rounded-pill" >View More</button></center>
+                      </div>
+                  </div>
+                  
+           
+              </div>
+            
+          </div>
+          </div>
+      </div>
+      {%  endfor %}
+
+
+
+  </main><!-- End #main -->
+{% endblock contents %}
+
+{% block footer %}
+{% endblock footer %}

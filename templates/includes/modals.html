@@ -151,10 +151,11 @@
                 <div class="col-md-12">
                     <h5>Intro Video</h5>
                     <div style="width:100%;">
-                        <video id="v" width="400" controls  >
+                        <video class="v" width="400" controls  >
                             <source src="{{ data.video.url }}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
+                        <input id="pk" type="text" value="{{data.id}}">
                     </div>
                 </div>
             </div>
@@ -515,3 +516,24 @@
 <!-- ====================================================donor modas starts here ========================================================-->
 
 
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).on('click', '.video'+1, function (e) {
+        var pk = $('#pk').attr('val')
+        e.preventDefault()
+    var video = $('.v'+pk).get(0);
+    if (video.paused === false) {
+        video.pause();
+    } else {
+        video.pause();
+    }
+
+    return false;
+});
+
+
+$('#noto').delay(5000).fadeOut('slow');
+
+</script>

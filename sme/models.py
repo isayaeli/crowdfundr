@@ -47,6 +47,7 @@ class Project(models.Model):
     def words(self):
         word = Word_of_support.objects.filter(project=self.id)
         return word
+        
 
 
 

@@ -106,4 +106,11 @@ def sme_profile(request):
     return render(request, 'sme/profile.html', context)
 
 
-
+def ngos(request):
+    ngos = Profile.objects.filter(user_type='sme')
+    projects = Project.objects.all().order_by('-id')
+    context  = {
+        'ngos':ngos,
+        'projects':projects
+    }
+    return render(request, 'sme/ngos.html', context)

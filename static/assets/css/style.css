@@ -1400,3 +1400,35 @@ video{
   top: 0px;
   transition: 2s ease-in-out;
 }
+
+.outer{
+  background-color: yellow;
+   border-radius: 10px;
+   height: 350px;
+}
+.inner{
+  background-color: white;
+  box-shadow:1px 1px 4px rgba(0, 0, 0, 0.2); 
+  border-radius:10px;
+  height: 350px;
+  transition: ease-in .4s;
+}
+.inner img {
+  border-radius:50px;
+}
+.inner h3{
+  font-weight: 700;
+}
+.inner p{
+  text-align:justify;
+  word-spacing:normal;
+   margin-left: 30px;
+   margin-right: 30px;
+}
+
+
+.inner:hover{
+  height: 346px;
+  transition: ease-in .4s;
+  margin-top: -10px;
+}
