@@ -1402,15 +1402,15 @@ video{
 }
 
 .outer{
-  background-color: yellow;
+  background-color: #ffbb00;
    border-radius: 10px;
-   height: 350px;
+   height: 370px;
 }
 .inner{
   background-color: white;
   box-shadow:1px 1px 4px rgba(0, 0, 0, 0.2); 
   border-radius:10px;
-  height: 350px;
+  height: 370px;
   transition: ease-in .4s;
 }
 .inner img {
@@ -1428,7 +1428,51 @@ video{
 
 
 .inner:hover{
-  height: 346px;
+  height: 366px;
   transition: ease-in .4s;
   margin-top: -10px;
+  /* border: 2px solid #ffbb00; */
 }
+
+.donor-main{
+  height: 300px;
+  
+    background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.left{
+  width: 50px;
+  background-color:#ffbb00;;
+   height:300px;
+  /* display: none; */
+}
+.left li{
+  margin-top: 20px;
+  margin-left: 18px;
+  list-style: none;
+}
+.left i{
+  font-size: 20px;
+}
+.right{
+  height: 60px; 
+  background-color:#ffbb00;
+  position:fixed;
+   bottom:0;
+   width: 300px; 
+   opacity: .5;
+   /* display: none; */
+}
+/* 
+.donor-main:hover .left{
+  display: block;
+}
+
+.donor-main:hover .right{
+  display: block;
+  height: 60px; 
+  background-color:#ffbb00; 
+  position:fixed; bottom:0;
+   width: 300px; opacity: .8;
+} */

@@ -190,3 +190,10 @@ def donor_profile(request):
     }
     return render(request, 'donors/profile.html', context)
 
+
+def donors(request):
+    donors = Profile.objects.filter(user_type='donor')
+    context  = {
+        'donors':donors
+    }
+    return render(request, 'donors/donors.html', context)

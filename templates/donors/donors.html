@@ -13,7 +13,7 @@
           <h2><a href="{% url 'home' %}"><img src="{% static 'assets/img/logo.png' %}" style="height: 70x;width: 150px;" alt="" class="img-fluid"></a></h2>
           <ol>
             <li><a href="{% url 'home' %}">Home</a></li>
-            <li>NGOs</li>
+            <li>Donors</li>
           </ol>
         </div>
 
@@ -24,33 +24,38 @@
         <div class="container">
   
           <div class="section-title" data-aos="fade-up">
-            <h2>NGOs</h2>
-            <p>All SMEs And NGOs ordered by most Recent</p>
+            <h2>Donors</h2>
+            <p>Our Donors</p>
           </div>
           
-          <div class="row" data-aos="fade-up">
-              {% for data in ngos %}
-              <div class="col-md-3">
-                  <div class="outer">
-                      <div class="inner text-center">
-                            <img class="mt-4" height="80" width="80" src="{{data.user.profile.image.url}}" alt="">
-                            <a class="text-dark" data-toggle="modal" data-target="#ngo{{data.id}}">
-                                <h3 class="mt-3"  >{{data.user.username}}</h3>
-                            </a>
-                            <p class="pt-2 pb-3" >
-                                {{data.overview}}
-                            </p>
-                      </div>
-                  </div>
-              </div>
-              {% endfor %}
+          <div class="row" style="padding-left:30px;" data-aos="fade-up">
+            {% for data in donors %}
+                <div class="col-md-3">
+                   <div class="donor-main" style=" background-image:url({{data.user.profile.image.url}});">
+                     <div style="display: inline-flex;" >
+                      <div class="left" data-aos="fade-up">
+                        <li><a href=""><i class="fa fa-facebook-square" ></i></a></li>
+                        <li><a href=""><i class="fa fa-twitter" ></i></a></li>
+                        <li><a href=""><i class="fa fa-instagram" ></i></a></li>
+                        <li><a href=""><i class="fa fa-linkedin-square" ></i></a></li>
+                    </div>
+                    <div class="right" data-aos="fade-up" >
+                       <div class="text-center mt-2" >
+                        <span class="text-dark" style="font-weight:bolder; padding-top:20px;" >{{data.user.username}}</span>
+                        <p class="text-dark" >Donor</p>
+                       </div>
+                    </div>
+                     </div>
+                   </div>
+                </div>
+                {% endfor %}
           </div>
      
   
         </div>
       </section>
 
-      {% for data in ngos %}
+      {% for data in donors %}
       <div class="modal fade mymodal"  id="ngo{{data.id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
           <div class="modal-content">

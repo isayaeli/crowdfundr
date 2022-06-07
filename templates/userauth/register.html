@@ -57,11 +57,9 @@
 
             {% for field in form %}
                 {% if field.errors %}
-                <div id="noto" class=" text-white text-center alert alert-danger bg-danger alert-dismissible fade show" role="alert">
+                <div id="noto" class=" text-center alert alert-danger" role="alert">
                     {{ field.errors|striptags }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
+                   
                 </div>
                 {% endif %}
             {% endfor %}

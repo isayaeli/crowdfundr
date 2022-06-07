@@ -43,8 +43,13 @@ def register_request(request):
                 profile.save()
                 messages.success(request, "Successful Registered! you can now proceed to login")
                 return redirect('login')
+    else:
+        form = registerForm()
+    context = {
+        'form':form
+    }
  
-    return render(request, 'userauth/register.html', )
+    return render(request, 'userauth/register.html',context )
 
 
 
