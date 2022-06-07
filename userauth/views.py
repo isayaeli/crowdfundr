@@ -17,6 +17,8 @@ def request_login(request):
             messages.success(request,'Successful Logged In')
             if request.user.profile.user_type == 'sme':
                 return redirect('index')
+            elif 'next' in request.POST:
+                return redirect(request.POST.get('next'))
             else:
                 return redirect('donor')
         messages.error(request, 'Username or password is Incorrect!')

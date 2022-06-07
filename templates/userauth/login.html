@@ -57,6 +57,9 @@
             {% endif %}
             <form  method="post" role="form" class="form-group">
               {% csrf_token %}
+              {% if request.GET.next %}
+                <input type="hidden" class="form-control" name="next" value="{{request.GET.next}}">
+              {% endif %}
               <div class="form-group mt-3">
                 <input style="height: 50px;" type="text" name="username" class="form-control" id="name" placeholder="User Name" required>
               </div>

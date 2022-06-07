@@ -60,8 +60,14 @@
           <!-- <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li> -->
         
           <li><a class="nav-link scrollto" href="#contact"><b>Contact</b></a></li>
+          {% if user.is_authenticated and user.profile.user_type == 'sme' %}
+          <li><a style="height: 35px;" class=" rounded-pill scrollto btn btn-outline-warning" href="{% url 'index' %}" ><b>Dashboard</b></a></li>
+          {% elif user.is_authenticated and user.profile.user_type == 'donor'  %}
+          <li><a style="height: 35px;" class=" rounded-pill scrollto btn btn-outline-warning" href="{% url 'donor' %}" ><b>Dashboard</b></a></li>
+          {% else %}
           <li><a style="height: 35px;" class=" rounded-pill scrollto btn btn-outline-warning" href="{% url 'login' %}" ><b>Login</b></a></li>
           <li><a style="height: 35px;" class=" rounded-pill scrollto btn btn-outline-warning" href="{% url 'register' %}" ><b>Register</b></a></li>
+          {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
