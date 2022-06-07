@@ -506,9 +506,10 @@
 
             </div>
           </div>
-
+          
           <div class="col-lg-5 col-md-12" data-aos="fade-up" data-aos-delay="300">
-            <form action="." method="post" role="form" class="php-email-form">
+            <div  style="display:none;" class="alert alert-success" id="notify" ></div>
+            <form id="form"  method="post" role="form" class="php-email-form">
               <div class="form-group">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
               </div>
@@ -519,14 +520,14 @@
                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea id="message" class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
               <!-- <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div> -->
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button id="send" type="submit">Send Message <img style="display:none;" id="img" height="30" width="30" src="{% static 'assets/img/balls.gif' %}" alt=""></button></div>
             </form>
           </div>
 

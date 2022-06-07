@@ -123,26 +123,35 @@
   <script>
       
 
-$(document).on('submit', '#login', function(e){
+$(document).on('click', '#send', function(e){
   e.preventDefault()
-  url = "{% url 'login' %}"
+  url = "{% url 'contact' %}"
   $.ajax({
     method:'post',
     url:url,
     data:{
       'csrfmiddlewaretoken':'{{csrf_token}}',
-      username:$('#username').val(),
-      password:$('#password').val()
+      name:$('#name').val(),
+      email:$('#email').val(),
+      subject:$('#subject').val(),
+      message:$('#message').val()
+    },
+
+    beforeSend:function(){
+        $('#img').show()    
+    },
+    complete: function() {
+        $("#img").hide();
     },
     success:function(response){
-      console.log(response)
-      $('#loginDiv').hide()
-      $('.modal-title').hide()
-      $('#success').html(response.success)
+      // console.log(response)
+      $('#form')[0].reset()
+      $('#notify').show()
+      $('#notify').html(response.result)
       
     },
     error:function(error){
-      console.log(error)
+      // console.log(error)
     }
   })
 })

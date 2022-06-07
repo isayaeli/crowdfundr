@@ -1,8 +1,10 @@
 
+import json
 import string
 import random
 import requests
 from django.shortcuts import get_object_or_404, redirect, render
+from home.models import Contact
 from sme.models import Donation, Project, Word_of_support
 from donors.models import Opportunity
 from userauth.models import Profile
@@ -165,3 +167,22 @@ def word(request, id):
         obj.save()
         return redirect('donate',id=id)
         
+
+def contact(request):
+    if request.method =='POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        response_message = {}
+        contact =Contact(name=name, email=email, subject=subject, message=message)
+        contact.save()
+        response_message['result'] = "Successful submited"
+        return HttpResponse(
+            json.dumps(response_message),
+            content_type = 'application/json'
+        )
+    return HttpResponse(
+        json.dumps({"Error":'Something went Wrong'}),
+        content_type = 'application/json'
+    )
