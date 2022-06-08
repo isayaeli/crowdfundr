@@ -25,8 +25,7 @@ class userForm(UserChangeForm):
         fields = ('username','email')
 
 
-        
-
+    
 class profileForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control form-control-round'}),label='Profile Photo')
 
