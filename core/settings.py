@@ -140,3 +140,7 @@ SWAHILIES_SECRET_KEY = config('SWAHILIES_SECRET_KEY')
 API_KEY = config('API_KEY')
 
 USE_THOUSAND_SEPARATOR = True
+
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"

@@ -4,9 +4,11 @@ from .models import Opportunity
 from django.contrib import messages
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from .decorator import donor_required, active_required
 # Create your views here.
 
-
+@donor_required
+@active_required
 def dashboard(request):
     opps = Opportunity.objects.filter(user=request.user).order_by('-id')
     context = {
@@ -101,3 +103,7 @@ def donors(request):
         'donors':donors
     }
     return render(request, 'donors/donors.html', context)
+
+
+def donor_forbbiden(request):
+    return render(request, 'donors/donor_required.html')
