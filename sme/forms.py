@@ -16,7 +16,7 @@ class userForm(UserChangeForm):
 
 class profileForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control form-control-round'}),label='Profile Photo')
-    overview = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':5, 'placeholder':'Not more than 320 words'}))
+    overview = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':5, 'placeholder':'Not more than 245 words','maxlength':245}))
 
 
     class Meta:
