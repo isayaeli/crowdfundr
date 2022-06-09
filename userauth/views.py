@@ -108,5 +108,5 @@ def confirm_link(request):
 
 def logout_request(request):
     logout(request)
-    messages.success(request,f"Logged out successful")
+    messages.info(request,f"Logged out successful")
     return redirect('login')
