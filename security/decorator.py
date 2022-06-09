@@ -12,6 +12,14 @@ def donor_required(view):
     return _view
 
 
+def sme_required(view):
+    @wraps(view)
+    def _view(request, *args, **kwargs):
+        if request.user.is_authenticated and request.user.profile.user_type == 'sme': 
+            return view(request, *args, **kwargs)
+        return redirect('sme_confirm')
+    return _view
+
 
 
 def active_required(view):

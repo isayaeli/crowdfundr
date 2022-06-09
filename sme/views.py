@@ -5,7 +5,11 @@ from .forms import *
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from security.decorator import sme_required,active_required
 # Create your views here.
+
+@sme_required
+@active_required
 def index(request):
     projects =  Project.objects.filter(user=request.user)
     context = {
@@ -31,7 +35,8 @@ def projects(request):
     }
     return render(request, 'sme/projects.html', context)
 
-
+@sme_required
+@active_required
 def add_project(request):
     if request.method == 'POST':
         print(request.POST)
@@ -54,7 +59,8 @@ def add_project(request):
             messages.error(request,'An error occured while submitting a form')
             return redirect('index')
 
-
+@sme_required
+@active_required
 def update_project(request,id):
     project = get_object_or_404(Project, id=id)
     if request.method == 'POST':
@@ -72,7 +78,8 @@ def update_project(request,id):
         project.save()
         return redirect('index')
 
-
+@sme_required
+@active_required
 def delete_project(request,id):
     project = get_object_or_404(Project, id=id)
     project.delete()
@@ -84,7 +91,8 @@ def delete_project(request,id):
 
 
 
-
+@sme_required
+@active_required
 def sme_profile(request):
     if request.method == 'POST':
         uform = userForm(request.POST, instance=request.user)
@@ -115,3 +123,6 @@ def ngos(request):
         'ngos':ngos,
     }
     return render(request, 'sme/ngos.html', context)
+
+def sme_forbbiden(request):
+    return render(request, 'sme/sme_required.html')

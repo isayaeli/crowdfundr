@@ -4,7 +4,7 @@ from .models import Opportunity
 from django.contrib import messages
 from .forms import *
 from django.contrib.auth.decorators import login_required
-from .decorator import donor_required, active_required
+from security.decorator import donor_required, active_required
 # Create your views here.
 
 @donor_required
@@ -16,7 +16,8 @@ def dashboard(request):
     }
     return render(request, 'donors/donor.html',context)
 
-
+@donor_required
+@active_required
 def opportunities(request):
     opportunities = Opportunity.objects.all().order_by('-id')
 
@@ -34,6 +35,8 @@ def opportunities(request):
     }
     return render(request, 'donors/opps.html', context)
 
+@donor_required
+@active_required
 def add_opportunity(request):
     if request.method == 'POST':
         print(request.POST)
@@ -51,7 +54,8 @@ def add_opportunity(request):
             messages.error(request,'An error occured while submitting a form')
             return redirect('donor')
 
-
+@donor_required
+@active_required
 def update_opportunity(request,id):
     opportunity = get_object_or_404(Opportunity, id=id)
     if request.method == 'POST':
@@ -64,7 +68,8 @@ def update_opportunity(request,id):
         opportunity.save()
         return redirect('donor')
 
-
+@donor_required
+@active_required
 def delete_opportunity(request,id):
     opportunity = get_object_or_404(Opportunity, id=id)
     opportunity.delete()
@@ -72,7 +77,8 @@ def delete_opportunity(request,id):
     return redirect('donor')
 
 
-
+@donor_required
+@active_required
 def donor_profile(request):
     if request.method == 'POST':
        
