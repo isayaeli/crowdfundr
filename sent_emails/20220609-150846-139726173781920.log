@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: isayaelib@gmail.com
+Date: Thu, 09 Jun 2022 12:08:46 -0000
+Message-ID: <165477652610.60128.1783779337992906204@squid>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/password-reset-confirm/Mg/b6rbem-9844c2994b95eaf7c279c4890173f046/
+
+Your username, in case you’ve forgotten: slim
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------
