@@ -38,7 +38,9 @@
                                 <h3 class="mt-3"  >{{data.user.username}}</h3>
                             </a>
                             <p class="pt-2 pb-3" >
-                                {{data.overview}}
+                                {% if data.overview %}
+                                {{data.overview|truncatechars:'240'}} <a class="text-primary" data-toggle="modal" data-target="#ngo{{data.id}}" ><b>More</b></a>
+                                {% endif %}
                             </p>
                       </div>
                   </div>

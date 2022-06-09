@@ -12,7 +12,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.FileField(upload_to='profile_images', default='avatar.png')
     user_type = models.CharField(choices=USER_STATUS, max_length=100,null=True )
-    overview = models.TextField(null=True, blank=True,max_length=245)
+    overview = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=False)
 
 
