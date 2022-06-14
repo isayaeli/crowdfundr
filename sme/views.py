@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from security.decorator import sme_required,active_required
+
 # Create your views here.
 
 @sme_required
@@ -126,3 +127,5 @@ def ngos(request):
 
 def sme_forbbiden(request):
     return render(request, 'sme/sme_required.html')
+
+

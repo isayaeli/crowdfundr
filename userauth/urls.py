@@ -10,4 +10,6 @@ urlpatterns = [
 
     path('confirm/', views.confirm_account, name='confirm'),
     path('confirm-link/', views.confirm_link , name='confirm-link'),
+
+    path('change-password',views.passwordchange, name='changepassword')
 ]

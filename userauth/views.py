@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.contrib.auth import login, authenticate, logout  
@@ -5,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 
 from .models import Profile
-from .forms import registerForm
+from .forms import ChangePassword, registerForm
 
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str
@@ -13,6 +14,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.contrib.auth.forms import PasswordChangeForm
 
 def request_login(request):
     if request.method == 'POST':
@@ -110,3 +112,26 @@ def logout_request(request):
     logout(request)
     messages.info(request,f"Logged out successful")
     return redirect('login')
+
+
+
+def passwordchange(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        print(request.POST)
+        if form.is_valid():
+            # form.clean_old_password = request.POST['old_password']
+            # form.clean_new_password1 = request.POST['new_password1']
+            # form.clean_new_password2 = request.POST['new_password2']
+            form.save()
+            messages.success(request, 'Succesfull changed password')
+            return redirect('login')
+        # messages.error(request, 'Error occured while changing the password')
+        # return redirect('changepassword')
+    
+    else:
+        form = PasswordChangeForm(request.user)
+    context ={
+        'form':form
+    }
+    return render(request, 'sme/passwordchange.html', context)

@@ -1,7 +1,7 @@
 from django import forms
 from userauth.models import Profile
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import  UserChangeForm
+from django.contrib.auth.forms import  UserChangeForm, PasswordChangeForm
 
 class userForm(UserChangeForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control form-control-round','placeholder':'username'}), label='Username')
@@ -35,3 +35,6 @@ class projectForm(forms.Form):
     proposal = forms.FileField(widget=forms.FileInput())
     video = forms.FileField(widget=forms.FileInput())
     project_image = forms.FileField( widget=forms.FileInput())
+
+
+
