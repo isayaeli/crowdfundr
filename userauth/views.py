@@ -120,15 +120,10 @@ def passwordchange(request):
         form = PasswordChangeForm(request.user, request.POST)
         print(request.POST)
         if form.is_valid():
-            # form.clean_old_password = request.POST['old_password']
-            # form.clean_new_password1 = request.POST['new_password1']
-            # form.clean_new_password2 = request.POST['new_password2']
             form.save()
-            messages.success(request, 'Succesfull changed password')
+            messages.info(request, 'Succesfull changed password, Login with your new password')
             return redirect('login')
-        # messages.error(request, 'Error occured while changing the password')
-        # return redirect('changepassword')
-    
+       
     else:
         form = PasswordChangeForm(request.user)
     context ={
