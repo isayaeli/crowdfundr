@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from security.decorator import sme_required,active_required
+from hitcount.utils import get_hitcount_model
+from hitcount.views import HitCountMixin
 
 # Create your views here.
 
@@ -13,9 +15,12 @@ from security.decorator import sme_required,active_required
 @active_required
 def index(request):
     projects =  Project.objects.filter(user=request.user)
+    last = projects.last()
     context = {
-        'projects':projects
+        'projects':projects,
+        'last':last
     }
+
     return render(request, 'sme/sme.html',context)
 
 
