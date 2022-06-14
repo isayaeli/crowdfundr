@@ -130,3 +130,21 @@ def passwordchange(request):
         'form':form
     }
     return render(request, 'sme/passwordchange.html', context)
+
+
+
+def donor_passwordchange(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        print(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Succesfull changed password, Login with your new password')
+            return redirect('login')
+       
+    else:
+        form = PasswordChangeForm(request.user)
+    context ={
+        'form':form
+    }
+    return render(request, 'donors/passwordchange.html', context)
