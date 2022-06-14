@@ -71,7 +71,11 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-warning font-extrabold">Latest Project </h6>
+                                                {% if last %}
                                                 <h6 class="font-extrabold mb-0 text-warning">{{last.get_percent}}% Raised</h6>
+                                                {% else %}
+                                                <h6 class="font-extrabold mb-0 text-warning"> 0 % Raised</h6>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
@@ -89,7 +93,11 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-dark font-extrabold">Latest Amount</h6>
+                                                {% if last %}
                                                 <h6 class="font-extrabold mb-0 text-dark">Tsh {{last.get_donation_sum}}</h6>
+                                                {% else %}
+                                                <h6 class="font-extrabold mb-0 text-dark">Tsh 0 </h6>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>

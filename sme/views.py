@@ -4,10 +4,7 @@ from .models import Project
 from .forms import *
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q
 from security.decorator import sme_required,active_required
-from hitcount.utils import get_hitcount_model
-from hitcount.views import HitCountMixin
 
 # Create your views here.
 
@@ -16,6 +13,7 @@ from hitcount.views import HitCountMixin
 def index(request):
     projects =  Project.objects.filter(user=request.user)
     last = projects.last()
+   
     context = {
         'projects':projects,
         'last':last
