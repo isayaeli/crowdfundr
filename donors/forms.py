@@ -33,4 +33,4 @@ class profileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = '__all__'
-        exclude =('user','user_type','overview')
+        exclude =('user','user_type','overview', 'is_active')
