@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import URLInput
 from userauth.models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import  UserChangeForm, PasswordChangeForm
@@ -32,8 +33,7 @@ class projectForm(forms.Form):
     beneficiaries = forms.CharField()
     target_area = forms.CharField()
     project_overview = forms.CharField()
-    proposal = forms.FileField(widget=forms.FileInput())
-    video = forms.FileField(widget=forms.FileInput())
+    video = forms.URLField(widget=forms.URLInput())
     project_image = forms.FileField( widget=forms.FileInput())
 
 

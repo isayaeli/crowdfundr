@@ -13,7 +13,7 @@ class Project(models.Model):
     target_area = models.TextField()
     project_overview = models.TextField()
     proposal = models.FileField(upload_to='proposals', null=True, blank=True)
-    video = models.FileField(upload_to='videos', null=True,blank=True)
+    video = models.URLField( null=True,blank=True)
     project_image = models.FileField(upload_to='project_image', default='brief.png')
     goal = models.IntegerField(default=0)
     created_on =  models.DateTimeField(default=datetime.now)

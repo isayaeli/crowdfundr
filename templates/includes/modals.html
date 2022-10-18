@@ -37,19 +37,7 @@
                         <p><b>{{ data.target_area }}</b></p>
                     </div>
                 </div>
-                {% if data.video %}
-                <div class="row">
-                    <div class="col-md-12">
-                        <h5>Intro Video</h5>
-                        <div style="width:100%;">
-                            <video id="v" width="400" controls >
-                                <source src="{{ data.video.url }}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
+               
             </div>
             <div class="modal-footer">
                 <a  class="btn btn-warning rounded-pill video" href="{% url 'donate' data.id %}" >Donate <i class="fa fa-donate" ></i></a>
@@ -146,20 +134,7 @@
                     <p><b>{{ data.target_area }}</b></p>
                 </div>
             </div>
-            {% if data.video %}
-            <div class="row">
-                <div class="col-md-12">
-                    <h5>Intro Video</h5>
-                    <div style="width:100%;">
-                        <video class="v" width="400" controls  >
-                            <source src="{{ data.video.url }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <input id="pk" type="text" value="{{data.id}}">
-                    </div>
-                </div>
-            </div>
-            {% endif %}
+           
         </div>
         <div class="modal-footer">
             <a class="btn btn-warning rounded-pill video" data-toggle="modal" data-target="#edit{{data.id}}" >Update <i class="bi bi-pencil" ></i></a>
@@ -215,15 +190,12 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-md-4">
-                        <label for="">Proposal *</label>
-                        <input  required type="file" name="proposal" class="form-control ">
+                   
+                    <div class="col-md-6">
+                        <label for="">You Tube Video Link</label>
+                        <input required type="text" name="video" class="form-control ">
                     </div>
-                    <div class="col-md-4">
-                        <label for="">Video *</label>
-                        <input required type="file" name="video" class="form-control ">
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label for="">Project Image *</label>
                         <input  required type="file" name="project_image" class="form-control ">
                     </div>
