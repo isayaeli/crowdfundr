@@ -132,13 +132,13 @@
                                                             {{forloop.counter}}
                                                         </td>
                                                         <td>
-                                                            {{data.title}}
+                                                            {{data.title|safe}}
                                                         </td>
                                                         <td class="text-center" >
                                                             {{data.project_duration}}
                                                         </td>
                                                         <td>
-                                                            {{data.beneficiaries|truncatechars:40}}
+                                                            {{data.beneficiaries|truncatechars:40|safe}}
                                                         </td>
                                                        
                                                         <td class="" >
@@ -170,7 +170,7 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-
+        
         <script>
             $(document).on('click', '.video', function (e) {
                 e.preventDefault()

@@ -109,31 +109,27 @@
         </div>
         <div class="modal-body">
             <div class="row mb-3">
-                <div class="col-md-4">
+                <div class="col-md-7">
                     <h5>Title</h5>
-                    <span><b>{{data.title}}</b></span>
+                    <span><b>{{data.title|safe}}</b></span>
                 </div>
-                <div class="col-md-4">
-                    <h5>Proposal</h5>
-                    <span><b>{{data.proposal}}</b></span>
-                </div>
+              
                 <div class="col-md-4">
                     <h5>Duration</h5>
                     <span><b>{{data.project_duration}}</b></span>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-7">
                     <h5>Project Overview</h5>
-                    <p><b>{{ data.project_overview }}</b></p>
+                    <p><b>{{ data.project_overview|safe }}</b></p>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <h5>Target Area</h5>
-                    <p><b>{{ data.target_area }}</b></p>
+                    <p><b>{{ data.target_area|safe }}</b></p>
                 </div>
             </div>
+           
            
         </div>
         <div class="modal-footer">
@@ -176,17 +172,17 @@
                 <div class="row mt-3">
                     <div class="col-md-6 ">
                         <label for="">Beneficiaries *</label>
-                        <textarea required class="form-control" name="beneficiaries" id="" cols="30" rows="5"></textarea>
+                        <textarea  class="form-control" name="beneficiaries" id="" cols="30" rows="5"></textarea>
                     </div>
                     <div class="col-md-6 ">
                         <label for="">Target Area *</label>
-                        <textarea required class="form-control" name="target_area" id="" cols="30" rows="5"></textarea>
+                        <textarea  class="form-control" name="target_area" id="" cols="30" rows="5"></textarea>
                     </div>
                 </div>
                 <div class="row mt-3 mb-3">
                     <div class="col-md-12">
                         <label class="mb-2" for="">Project Overview</label>
-                        <textarea   required class="form-control" name="project_overview" id="default" cols="30" rows="5"></textarea>
+                        <textarea    class="form-control" name="project_overview" id="" cols="30" rows="5"></textarea>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -495,8 +491,13 @@
 <script src="{% static 'assets/tinymce/tinymce.min.js' %}"></script>
 <script src="{% static 'assets/tinymce/plugins/code/plugin.min.js' %}"></script>
 <script>
-    tinymce.init({ selector: '#default' });
-    tinymce.init({ selector: '#default2' });
+    tinymce.init({ selector: 'textarea',
+
+    
+});
+
+   
+   
     tinymce.init({ selector: '#dark', toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code', plugins: 'code' });
 </script>
 
