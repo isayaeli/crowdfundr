@@ -103,8 +103,8 @@ def process_payment(amount, order_id):
         "amount":amount,
         "username":"CrowdImpact",
         "phone_number":"0783262616",
-        "is_live":False,
-        "success_url": "https://9a00-41-222-180-250.in.ngrok.io/success",
+        "is_live":True,
+        "success_url": "https://crowdimpact.me/",
         # "cancel_url": "https://9a00-41-222-180-250.in.ngrok.io/cancel",
         # "webhook_url": "https://9a00-41-222-180-250.in.ngrok.io/response",
         
