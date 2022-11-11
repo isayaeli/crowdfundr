@@ -1393,6 +1393,31 @@ video{
   height: auto;
 }
 
+.donate-mobile{
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .breadcrumbs .d-flex {
+    display: block !important;
+  }
+  .breadcrumbs ol {
+    display: block;
+  }
+  .breadcrumbs ol li {
+    display: inline-block;
+  }
+
+  .donate{
+    display: none;
+  }
+  .donate-mobile{
+    display: block;
+  }
+ 
+}
+
+
 .donate-form{
   position:fixed; 
   right: 0px;
