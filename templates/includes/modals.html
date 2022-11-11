@@ -1,4 +1,4 @@
-
+{% load static %}
     {% for data in projects %}
     <div class="modal fade mymodal proj"  id="projects{{data.id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
@@ -186,7 +186,7 @@
                 <div class="row mt-3 mb-3">
                     <div class="col-md-12">
                         <label class="mb-2" for="">Project Overview</label>
-                        <textarea required class="form-control" name="project_overview" id="" cols="30" rows="5"></textarea>
+                        <textarea   required class="form-control" name="project_overview" id="default" cols="30" rows="5"></textarea>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -491,6 +491,14 @@
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script src="{% static 'assets/tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'assets/tinymce/plugins/code/plugin.min.js' %}"></script>
+<script>
+    tinymce.init({ selector: '#default' });
+    tinymce.init({ selector: '#dark', toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code', plugins: 'code' });
+</script>
+
 <script>
     $(document).on('click', '.video'+1, function (e) {
         var pk = $('#pk').attr('val')
