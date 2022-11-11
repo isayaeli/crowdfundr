@@ -1392,9 +1392,7 @@ video{
   width: 100%;
   height: auto;
 }
-.iframe-mobile{
-  display: none;
-}
+
 
 .donate-mobile{
   display: none;
@@ -1415,13 +1413,6 @@ video{
     display: none;
   }
   .donate-mobile{
-    display: block;
-  }
-
-  .iframe-desktop{
-    display: none;
-  }
-  .iframe-mobile{
     display: block;
   }
  
