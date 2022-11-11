@@ -252,7 +252,7 @@
                 <div class="row mt-3 mb-3">
                     <div class="col-md-12">
                         <label class="mb-2" for="">Project Overview</label>
-                        <textarea required class="form-control" name="project_overview" id="" cols="30" rows="5">{{data.project_overview}}</textarea>
+                        <textarea required class="form-control" name="project_overview" id="default2" cols="30" rows="5">{{data.project_overview}}</textarea>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -496,6 +496,7 @@
 <script src="{% static 'assets/tinymce/plugins/code/plugin.min.js' %}"></script>
 <script>
     tinymce.init({ selector: '#default' });
+    tinymce.init({ selector: '#default2' });
     tinymce.init({ selector: '#dark', toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code', plugins: 'code' });
 </script>
 
