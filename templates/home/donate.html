@@ -118,7 +118,7 @@
                         <!-- <input class="text-dark" id="amount" type="hidden" name="amount1"> -->
                     </div>
                     <input required id="amount" type="number" style="height: 50px;" name="amount" class="form-control mb-3" placeholder="Other Amount">
-                    <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate Now with Swahilies Pay</button>
+                    <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate with mobile money</button>
                 </form>
 
 
@@ -126,7 +126,7 @@
                   {% csrf_token %}
                    <input type="hidden" id="fw_amount" name="amount">
                    <input type="hidden" id="fw_name" name="name" value="Anonymous">
-                   <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate With flutter Wave</button>
+                   <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate with card</button>
                 </form>
 
 
@@ -206,14 +206,14 @@
                       <!-- <input class="text-dark" id="amount" type="hidden" name="amount1"> -->
                   </div>
                   <input required id="amount-mobile" type="number" style="height: 50px; width: 100%;" name="amount" class="form-control mb-3" placeholder="Other Amount">
-                  <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate Now Swahilies</button>
+                  <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate with mobile money</button>
               </form>
 
               <form  style="margin-left:20px; margin-right:20px;" action="{% url 'fw_donate' data.id %}" method="post">
                 {% csrf_token %}
                  <input type="hidden" id="mobile_fw_amount" name="amount">
                  <input type="hidden" id="mobile_fw_name" name="name" value="Anonymous">
-                 <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate With flutter Wave</button>
+                 <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate with card</button>
               </form>
 
               <small style="margin-left:20px;">Recent Donations</small>

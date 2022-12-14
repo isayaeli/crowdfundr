@@ -222,7 +222,7 @@ def fw_process_payment(name,amount, order_id):
             "amount":amount,
             "currency":"TZS",
             "redirect_url":"http://localhost:5000/callback",
-            "payment_options":"card",
+            "payment_options":"card,",
             # "meta":{
             #     "consumer_id":customer_id,
             #     "consumer_mac":"92a3-912ba-1192a"
