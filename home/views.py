@@ -1,5 +1,6 @@
 
 import json
+import math
 import string
 import random
 import requests
@@ -11,6 +12,8 @@ from userauth.models import Profile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
 from django.db.models import Q
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 key = settings.API_KEY
 url = "https://swahiliesapi.invict.site/Api"
@@ -186,3 +189,78 @@ def contact(request):
         json.dumps({"Error":'Something went Wrong'}),
         content_type = 'application/json'
     )
+
+
+
+
+
+def fw_donate(request,id):
+    project  = get_object_or_404(Project, id=id)
+    if request.method == 'POST':
+        # print(request.POST)
+        order_id = ''.join(random.sample(string.ascii_lowercase, 12))
+        amount =  int(request.POST['amount'])
+        name =  request.POST['name']
+        user = project.user
+        project = project.id
+        obj  = Donation(user=user, project_id=project,name=name,donation=amount,donation_id=order_id)
+        obj.save()
+        return redirect(str(fw_process_payment(name,amount, order_id)))
+    context = {
+        'data':project
+    }
+    return render(request, 'home/donate.html', context)
+
+
+
+
+def fw_process_payment(name,amount, order_id):
+    auth_token= settings.RAVE_SECRET_KEY
+    hed = {'Authorization': 'Bearer ' + auth_token}
+    data = {
+            "tx_ref":order_id,
+            "amount":amount,
+            "currency":"TZS",
+            "redirect_url":"http://localhost:5000/callback",
+            "payment_options":"card, ussd",
+            # "meta":{
+            #     "consumer_id":customer_id,
+            #     "consumer_mac":"92a3-912ba-1192a"
+            # },
+            "customer":{
+                "email":'info@crowdimpact.me',
+                "phonenumber":'255 745 831 623',
+                "name":name
+            },
+            "customizations":{
+                "title":"CrowdImpact",
+                "description":"Donate to Help Startups",
+                "logo":"http://localhost:5000/static/assets/img/logo.png"
+            }
+            }
+    url = ' https://api.flutterwave.com/v3/payments'
+    response = requests.post(url, json=data, headers=hed)
+    response=response.json()
+    link=response['data']['link']
+    return link
+
+
+from django.views.decorators.http import require_http_methods
+from django.http import HttpResponse
+
+
+@require_http_methods(['GET', 'POST'])
+def fw_payment_response(request):
+    status=request.GET.get('status', None)
+    tx_ref=request.GET.get('tx_ref', None)
+    donation =  Donation.objects.filter(donation_id=tx_ref)[0]
+    # print(donation.donation_id)
+    if  donation.donation_id == tx_ref and  status == 'successful':
+        donation.verified = True
+        donation.save()
+
+    context = {
+        'status':status,
+        'tx_ref':tx_ref,
+    }
+    return render(request, 'home/fw_response.html', context)

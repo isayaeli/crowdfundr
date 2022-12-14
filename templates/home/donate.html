@@ -36,9 +36,6 @@
                 </div>
 
 
-                
-
-               
                 <div style="height:30px; padding-left: 50px;" ></div>
                 <span class="mt-5 ml-3"  ><b>{{data.user.username|capfirst}} is raising Funds for their project {{data.title}}</b></span>
 
@@ -121,8 +118,20 @@
                         <!-- <input class="text-dark" id="amount" type="hidden" name="amount1"> -->
                     </div>
                     <input required id="amount" type="number" style="height: 50px;" name="amount" class="form-control mb-3" placeholder="Other Amount">
-                    <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate Now</button>
+                    <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate Now with Swahilies Pay</button>
                 </form>
+
+
+                <form  style="margin-left:20px; margin-right:20px;" action="{% url 'fw_donate' data.id %}" method="post">
+                  {% csrf_token %}
+                   <input type="text" id="fw_amount" name="amount">
+                   <input type="text" id="fw_name" name="name">
+                   <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate With flutter Wave</button>
+                </form>
+
+
+
+
                 <small style="margin-left:20px;">Recent Donations</small>
                 {% for data in data.get_all_donations %}
                 <div class="recent-donor d-inline-flex pb-3 pt-3" style="border-bottom: 1px solid #cecece; width: 90%; margin-left: 20px; margin-right: 20px;">
@@ -284,6 +293,7 @@
         $(document).on('click','.amount', function(){
             var btn_val = $(this).val() 
             $('#amount').val(btn_val)
+            $('#fw_amount').val(btn_val)
             // console.log(btn_val)
             
         })
@@ -299,6 +309,7 @@
         $(document).on('click','.name', function(){
             var btn_val = $(this).val() 
             $('#name').val(btn_val)
+            $('#fw_name').val(btn_val)
             console.log(btn_val)
             
         })
@@ -314,6 +325,7 @@
         $(document).on('focus','#amount', function(){
             var btn_val = $(this).val() 
             $('#amount').val(btn_val)
+            $('#fw_amount').val(btn_val)
             // console.log(btn_val)
             
         })
