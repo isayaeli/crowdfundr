@@ -124,8 +124,8 @@
 
                 <form  style="margin-left:20px; margin-right:20px;" action="{% url 'fw_donate' data.id %}" method="post">
                   {% csrf_token %}
-                   <input type="text" id="fw_amount" name="amount">
-                   <input type="text" id="fw_name" name="name">
+                   <input type="hidden" id="fw_amount" name="amount">
+                   <input type="hidden" id="fw_name" name="name" value="Anonymous">
                    <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate With flutter Wave</button>
                 </form>
 
@@ -206,8 +206,16 @@
                       <!-- <input class="text-dark" id="amount" type="hidden" name="amount1"> -->
                   </div>
                   <input required id="amount-mobile" type="number" style="height: 50px; width: 100%;" name="amount" class="form-control mb-3" placeholder="Other Amount">
-                  <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate Now</button>
+                  <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate Now Swahilies</button>
               </form>
+
+              <form  style="margin-left:20px; margin-right:20px;" action="{% url 'fw_donate' data.id %}" method="post">
+                {% csrf_token %}
+                 <input type="hidden" id="mobile_fw_amount" name="amount">
+                 <input type="hidden" id="mobile_fw_name" name="name" value="Anonymous">
+                 <button style="width:100%;" class=" btn btn-outline-warning btn-lg rounded-pill" >Donate With flutter Wave</button>
+              </form>
+
               <small style="margin-left:20px;">Recent Donations</small>
               {% for data in data.get_all_donations %}
               <div class="recent-donor d-inline-flex pb-3 pt-3" style="border-bottom: 1px solid #cecece; width: 100%; margin-left: 20px; margin-right: 20px;">
@@ -302,6 +310,7 @@
         $(document).on('click','.amount-mobile', function(){
             var btn_val = $(this).val() 
             $('#amount-mobile').val(btn_val)
+            $('#mobile_fw_amount').val(btn_val)
             // console.log(btn_val)
             
         })
@@ -314,15 +323,31 @@
             
         })
 
-
-        $(document).on('click','.name-mobile', function(){
+        $(document).on('change','#name', function(){
             var btn_val = $(this).val() 
-            $('#name-mobile').val(btn_val)
+            $('#name').val(btn_val)
+            $('#fw_name').val(btn_val)
             console.log(btn_val)
             
         })
 
-        $(document).on('focus','#amount', function(){
+
+        $(document).on('click','.name-mobile', function(){
+            var btn_val = $(this).val() 
+            $('#name-mobile').val(btn_val)
+            $('#mobile_fw_name').val(btn_val)
+            console.log(btn_val)
+            
+        })
+        $(document).on('change','#name-mobile', function(){
+            var btn_val = $(this).val() 
+            $('#name-mobile').val(btn_val)
+            $('#mobile_fw_name').val(btn_val)
+            console.log(btn_val)
+            
+        })
+
+        $(document).on('change','#amount', function(){
             var btn_val = $(this).val() 
             $('#amount').val(btn_val)
             $('#fw_amount').val(btn_val)
@@ -330,9 +355,10 @@
             
         })
 
-        $(document).on('focus','#amount-mobile', function(){
+        $(document).on('change','#amount-mobile', function(){
             var btn_val = $(this).val() 
             $('#amount-mobile').val(btn_val)
+            $('#mobile_fw_amount').val(btn_val)
             // console.log(btn_val)
             
         })
